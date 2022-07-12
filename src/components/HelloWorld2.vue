@@ -11,6 +11,9 @@
     <button v-on:click="handleClick">click</button>
      <button v-on:click="add({num:1000})">click1</button>
      <button v-on:click="add({num:100})">click2</button>
+     <hr>
+     <el-button type="primary" size="default" >button</el-button>
+     
   </div>
 </template>
 
