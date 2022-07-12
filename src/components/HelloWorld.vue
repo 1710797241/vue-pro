@@ -10,35 +10,7 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
-  },
-  beforeCreate(){
-    console.log('beforeCreate');
-  }, 
-  created(){
-    console.log('created');
-  } , 
-  beforeMount(){
-    console.log('beforeMount');
-  },
-  mounted(){
-    console.log('mounted');
-  },
-  beforeUnmount(){
-   
-    console.log('beforeUnmount');
-    localStorage.beforeUnmount = '1'
-  },
-  unmounted(){
-    console.log('unmounted');
-    localStorage.unmounted = '2'
-  },
-  beforeUpdate(){
-
-  },
-  updated(){
-
-  },
- 
+  }
 }
 </script>
 

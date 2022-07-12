@@ -1,6 +1,8 @@
 <template>
-  
-  <HelloWorld :msg="hello"/>
+  <div id="app">
+   
+    <HelloWorld msg="Welcome App"/>
+  </div>
 </template>
 
 <script>
@@ -10,11 +12,6 @@ export default {
   name: 'App',
   components: {
     HelloWorld
-  },
-  data(){
-    return {
-      hello:'hello-d'
-    }
   }
 }
 </script>
