@@ -1,8 +1,3 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
-
-Vue.use(Vuex);
-
 const state = {
     num: 0
 };
@@ -24,4 +19,4 @@ const actions = {
 const getters = {
     newNum: state => state.num + 'new'
 };
-export default new Vuex.Store({ state, getters, mutations, actions });
+export default { namespaced: true, state, getters, mutations, actions };

@@ -1,7 +1,11 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div>num: {{$store.state.num}}</div>
+    <!-- global -->
+    <div>name:{{$store.state.name}}</div>
+     <button v-on:click="handleChangeName">handleChangeName</button>
+    <!-- helloStore  -->
+    <div>num: {{$store.state.helloStore.num}}</div>
      <div>num1: {{num}}</div>
      <div>newNum:{{newNum}}</div>
     <button v-on:click="handleClick">click</button>
@@ -18,18 +22,22 @@ export default {
     msg: String
   },
   computed:{
-    ...mapState(['num']),
-    ...mapGetters(['newNum'])
+    ...mapState('helloStore',['num']),
+    ...mapGetters('helloStore',['newNum'])
   },
   mounted(){
     console.log('did',this);
   },
   methods:{
     handleClick(){
-      this.$store.commit("add",{num:5})//muatations
-      this.$store.dispatch("add",{num:4})
+      this.$store.commit("helloStore/add",{num:5})//muatations
+      this.$store.dispatch("helloStore/add",{num:4})
     },
-    ...mapMutations(['add']),
+    handleChangeName(){
+      this.$store.commit("add",{name:'qiye'})
+      this.$store.dispatch("add",{name:'qiyedao'})
+    },  
+    ...mapMutations('helloStore',['add']),
     
   }
 }
