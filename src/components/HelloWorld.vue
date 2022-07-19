@@ -15,8 +15,8 @@
     <h1>antd</h1>
      <a-date-picker v-bind:value="value1" @change="onChange"/>
       <a-table :columns="columns" :data-source="data">
-    <a slot="name" slot-scope="text">{{ text }}</a>
-    <span slot="customTitle"><a-icon type="smile-o" /> Name</span>
+    <a slot="name" slot-scope="text">{{ text }} 数据</a>
+    <span slot="customTitle"><a-icon type="smile-o" /> Name 自定义表头</span>
     
     <span slot="tags" slot-scope="tags">
       <a-tag
@@ -29,13 +29,30 @@
     </span>
    
    <span slot="action" slot-scope="text, record">
-      <a>Invite 一 {{ record.name }}</a>
+      <a @click="handleModal(true,record)">编辑</a>
       <a-divider type="vertical" />
-      <a>Delete</a>
-      <a-divider type="vertical" />
-      <a class="ant-dropdown-link"> More actions <a-icon type="down" /> </a>
+      
+     <a-popconfirm
+    title="Are you sure delete this task?"
+    ok-text="Yes"
+    cancel-text="No"
+    @confirm="confirm"
+    @cancel="cancel"
+  >
+    <a href="#">Delete</a>
+  </a-popconfirm>
+    
     </span>
   </a-table>
+  <a-modal
+      title="Title"
+      :visible="visible"
+     
+      @ok="handleOK"
+      @cancel="handleCancel"
+    > <a-spin />
+      <p>modal</p>
+    </a-modal>
   </div>
   </div>
  
@@ -110,13 +127,36 @@ export default {
   return {
       value1:moment(),
       data,
-      columns
+      columns,
+      visible:false
   }
   },  
   mounted(){
     console.log('did',this);
   },
   methods:{
+    confirm(){
+      this.$notification.success({
+        message:"ok",
+        description:'xxxxxxx........'
+      })
+    },
+    cancel(){
+      this.$notification.error({
+        message:"error",
+        description:'xxxxxxx........'
+      })
+    },
+    handleOK(){
+      this.$message.success("success")
+    },  
+    handleModal(status,record){
+      this.visible = status
+      console.log('record',record);
+    },
+    handleCancel(){
+      this.visible = false
+    },  
     onChange(date, dateString){
       console.log('date',date,'dateString',dateString);
       this.value1 = date;
