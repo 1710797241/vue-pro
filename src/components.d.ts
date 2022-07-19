@@ -6,7 +6,6 @@ declare module 'vue' {
   export interface GlobalComponents {
     AAvatar: typeof import('ant-design-vue/es')['Avatar']
     AButton: typeof import('ant-design-vue/es')['Button']
-    ACard: typeof import('ant-design-vue/es')['Card']
     ACol: typeof import('ant-design-vue/es')['Col']
     ADescriptions: typeof import('ant-design-vue/es')['Descriptions']
     ADescriptionsItem: typeof import('ant-design-vue/es')['DescriptionsItem']
@@ -23,12 +22,6 @@ declare module 'vue' {
     ASpace: typeof import('ant-design-vue/es')['Space']
     AStatistic: typeof import('ant-design-vue/es')['Statistic']
     ASwitch: typeof import('ant-design-vue/es')['Switch']
-    ATag: typeof import('ant-design-vue/es')['Tag']
-    ATypography: typeof import('ant-design-vue/es')['Typography']
-    ATypographyLink: typeof import('ant-design-vue/es')['TypographyLink']
-    ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
-    ATypographyText: typeof import('ant-design-vue/es')['TypographyText']
-    ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']
     RightContent: typeof import('./components/RightContent/RightContent.vue')['default']
     SettingDrawer: typeof import('./components/SettingDrawer/SettingDrawer.vue')['default']
   }

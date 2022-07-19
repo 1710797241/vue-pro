@@ -44,6 +44,7 @@ defineProps<{
 }>();
 
 const handleClick = () => {
+  // 更换主题
   apply(randomTheme());
 };
 </script>

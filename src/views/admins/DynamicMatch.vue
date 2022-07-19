@@ -34,6 +34,7 @@
         <a-button type="dashed" @click="next">跳转下一页</a-button>
       </a-space>
       <a-divider />
+     
       <a-pagination :current="currentId" :total="total" show-less-items @change="handlePageChange" />
     </div>
   </page-container>

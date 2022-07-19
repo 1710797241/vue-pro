@@ -1,5 +1,5 @@
 <template>
-  <ConfigProvider>
+  <ConfigProvider  :locale="zhCN">
     <router-view />
   </ConfigProvider>
 </template>
@@ -7,6 +7,7 @@
 <script setup lang="ts">
 import { ConfigProvider } from 'ant-design-vue';
 import { useUserTheme } from './hooks/useTheme';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
 
 useUserTheme();
 </script>

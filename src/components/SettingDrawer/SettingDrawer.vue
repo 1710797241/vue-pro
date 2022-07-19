@@ -2,7 +2,7 @@
   <a-drawer v-model:visible="visible" :width="300" placement="right" :closable="false">
     <template #handle>
       <div class="ant-pro-setting-drawer-handle" @click="handleShowDrawer">
-        <SettingOutlined v-if="!visible" />
+        <SettingOutlined style="color:#1890ff;"  v-if="!visible" />
         <CloseOutlined v-else />
       </div>
     </template>

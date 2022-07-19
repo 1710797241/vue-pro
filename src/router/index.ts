@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 import BasicLayout from '../layouts/BasicLayout.vue';
 import BlankLayout from '../layouts/BlankLayout.vue';
-import WelcomePage from '../views/Page1.vue';
+import WelcomePage from '../views/Welcome.vue';
 
 // only githubpages preview site used, if use template please remove this check
 // and use `createWebHistory` is recommend
@@ -31,13 +31,6 @@ export default createRouter({
           redirect: () => ({ name: 'page1' }),
           children: [
             {
-              path: 'page-1',
-              name: 'page1',
-              meta: { title: '一级页面' },
-              component: () => import('../views/admins/PageInfo.vue'),
-            },
-
-            {
               path: 'dynamic-match/:id(\\d+)',
               name: 'dynamic-match',
               // 路由 path 默认参数再 meta.params 里
@@ -45,12 +38,6 @@ export default createRouter({
               component: () => import('../views/admins/DynamicMatch.vue'),
             },
           ],
-        },
-        {
-          path: '/version',
-          name: 'version',
-          meta: { title: 'Version', icon: 'icon-antdesign' },
-          component: () => import('../views/Detail.vue'),
         },
       ],
     },
