@@ -36,12 +36,7 @@ export default createRouter({
               meta: { title: '一级页面' },
               component: () => import('../views/admins/PageInfo.vue'),
             },
-            {
-              path: 'page-2',
-              name: 'page2',
-              meta: { title: '二级页面' },
-              component: () => import('../views/admins/PageTypography.vue'),
-            },
+
             {
               path: 'dynamic-match/:id(\\d+)',
               name: 'dynamic-match',
@@ -58,6 +53,14 @@ export default createRouter({
           component: () => import('../views/Detail.vue'),
         },
       ],
+    },
+    {
+      path: '/404',
+      component: () => import(/* webpackChunkName: "fail" */ '../views/404.vue'),
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/404',
     },
   ],
 });
