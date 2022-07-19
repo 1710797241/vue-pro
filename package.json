@@ -3,7 +3,8 @@
   "version": "3.0.2",
   "private": true,
   "scripts": {
-    "start":"npm run serve",
+    "start": "npm run serve",
+    "start:no-mock": "cross-env VUE_APP_MOCK=none npm run serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
@@ -57,6 +58,7 @@
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "commitizen": "^4.2.4",
+    "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^5.16.0",
     "eslint-plugin-html": "^5.0.5",
