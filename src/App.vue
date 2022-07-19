@@ -15,6 +15,7 @@ useUserTheme();
 <style>
 #app {
   height: 100%;
+  
 }
 
 .ant-pro-sider {
@@ -26,13 +27,15 @@ useUserTheme();
 .slide-left-enter,
 .slide-right-leave-active {
   opacity: 0;
-  transform: translate(2em, 0);
+  transform: translate(0, 2em);
+   transition: all 0.3s;
 }
 
 .slide-left-leave-active,
 .slide-right-enter {
   opacity: 0;
-  transform: translate(-2em, 0);
+  transform: translate(0, -2em);
+  transition: all 0.3s;
 }
 
 .zoom-enter-active,
