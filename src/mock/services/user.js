@@ -474,81 +474,6 @@ const info = (options) => {
  */
 const userNav = (options) => {
   const nav = [
-    // dashboard
-    {
-      name: 'dashboard',
-      parentId: 0,
-      id: 1,
-      meta: {
-        icon: 'dashboard',
-        title: '仪表盘',
-        show: true
-      },
-      component: 'RouteView',
-      redirect: '/dashboard/workplace'
-    },
-    {
-      name: 'workplace',
-      parentId: 1,
-      id: 7,
-      meta: {
-        title: '工作台',
-        show: true
-      },
-      component: 'Workplace'
-    },
-    {
-      name: 'monitor',
-      path: 'https://www.baidu.com/',
-      parentId: 1,
-      id: 3,
-      meta: {
-        title: '监控页（外部）',
-        target: '_blank',
-        show: true
-      }
-    },
-
-    // form
-    {
-      name: 'form',
-      parentId: 0,
-      id: 10,
-      meta: {
-        icon: 'form',
-        title: '表单页'
-      },
-      redirect: '/form/base-form',
-      component: 'RouteView'
-    },
-    {
-      name: 'basic-form',
-      parentId: 10,
-      id: 6,
-      meta: {
-        title: '基础表单'
-      },
-      component: 'BasicForm'
-    },
-    {
-      name: 'step-form',
-      parentId: 10,
-      id: 5,
-      meta: {
-        title: '分步表单'
-      },
-      component: 'StepForm'
-    },
-    {
-      name: 'advanced-form',
-      parentId: 10,
-      id: 4,
-      meta: {
-        title: '高级表单'
-      },
-      component: 'AdvanceForm'
-    },
-
     // list
     {
       name: 'list',
@@ -573,48 +498,39 @@ const userNav = (options) => {
       },
       component: 'TableList'
     },
-    {
-      name: 'basic-list',
-      parentId: 10010,
-      id: 10012,
-      meta: {
-        title: '标准列表',
-        show: true
-      },
-      component: 'StandardList'
-    },
-    {
-      name: 'search',
-      parentId: 10010,
-      id: 10014,
-      meta: {
-        title: '搜索列表',
-        show: true
-      },
-      redirect: '/list/search/article',
-      component: 'SearchLayout'
-    },
-    {
-      name: 'article',
-      parentId: 10014,
-      id: 10015,
-      meta: {
-        title: '搜索列表（文章）',
-        show: true
-      },
-      component: 'SearchArticles'
-    },
 
-    {
-      name: 'application',
-      parentId: 10014,
-      id: 10017,
-      meta: {
-        title: '搜索列表（应用）',
-        show: true
-      },
-      component: 'SearchApplications'
-    },
+    // {
+    //   name: 'search',
+    //   parentId: 10010,
+    //   id: 10014,
+    //   meta: {
+    //     title: '搜索列表',
+    //     show: true
+    //   },
+    //   redirect: '/list/search/article',
+    //   component: 'SearchLayout'
+    // },
+    // {
+    //   name: 'article',
+    //   parentId: 10014,
+    //   id: 10015,
+    //   meta: {
+    //     title: '搜索列表（文章）',
+    //     show: true
+    //   },
+    //   component: 'SearchArticles'
+    // },
+
+    // {
+    //   name: 'application',
+    //   parentId: 10014,
+    //   id: 10017,
+    //   meta: {
+    //     title: '搜索列表（应用）',
+    //     show: true
+    //   },
+    //   component: 'SearchApplications'
+    // },
 
     // 特殊三级菜单
     {
