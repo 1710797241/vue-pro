@@ -11,7 +11,17 @@
     <button v-on:click="handleClick">click</button>
      <button v-on:click="add({num:1000})">click1</button>
      <button v-on:click="add({num:100})">click2</button>
+     <div v-for="(item,index) in list" v-bind:key="index">{{index+1}}:{{item}}</div>
+     <button @click="handlePushItem">push item to list</button>
+     <div v-if="show">show</div>
+     <div v-else>hidden</div>
+     <button @click="handleChangeStatus(!show)">{{show ?'hidden':'show'}}</button>
+     <div>
+      <qi-ye name="liqiye"></qi-ye>
+     </div>
       <div>
+        <input type="text" placeholder="keywords"  @change="handleKeyword">
+        <h1>待传输： {{keyword}}</h1>
     <h1>antd</h1>
      <a-date-picker v-bind:value="value1" @change="onChange"/>
       <a-table :columns="columns" :data-source="data">
@@ -50,7 +60,7 @@
      
       @ok="handleOK"
       @cancel="handleCancel"
-    > <a-spin />
+    > <a-spin size="large"/>
       <p>modal</p>
     </a-modal>
   </div>
@@ -61,6 +71,7 @@
 <script>
 import { mapState,mapMutations,mapGetters } from 'vuex';
 import moment from 'moment';
+import Vue from 'vue';
 const columns = [
   {
     dataIndex: 'name',
@@ -114,6 +125,11 @@ const data = [
     tags: ['cool', 'teacher'],
   },
 ];
+
+Vue.component("qi-ye",{
+  props:['name'],
+  template:`<div>{{name}}</div>`
+})
 export default {
   name: 'HelloWorld',
   props: {
@@ -128,13 +144,26 @@ export default {
       value1:moment(),
       data,
       columns,
-      visible:false
+      visible:false,
+      keyword:'',
+      list:[1,2,3,4,5,6],
+      show:true
   }
   },  
   mounted(){
     console.log('did',this);
   },
   methods:{
+    handlePushItem(){
+      this.list.push(new Date().getTime())
+    },
+    handleChangeStatus(status){
+      this.show = status;
+    },  
+    handleKeyword(e){
+      console.log(e.target.value,'keyword');
+      this.keyword = e.target.value
+    },  
     confirm(){
       this.$notification.success({
         message:"ok",
