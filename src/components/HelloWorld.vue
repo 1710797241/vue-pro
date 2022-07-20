@@ -18,6 +18,12 @@
       index:{{ index }}--name:{{ name }}--value:{{ item }}
     </div>
     <button @click="handlePushItem">push item to list</button>
+    <custom-button @click="handleCustomButton" :link="isLink" size="small" :numForLine="12" email="171079@"
+      :phone="phone">
+      <span slot="top" slot-scope="num">custom-top {{ num }}</span>
+      <span slot="bottom">custom-bottom</span>
+    </custom-button>
+    <custom-input v-model="customModel"></custom-input>
     <div v-if="show">show</div>
     <div v-else>hidden</div>
     <button @click="handleChangeStatus(!show)">{{ show ? 'hidden' : 'show' }}</button>
@@ -32,10 +38,7 @@
         <button :style="{ color: 'orange' }">style</button>
       </template>
       <a-date-picker v-bind:value="value1" @change="onChange" />
-      <custom-button @click="handleCustomButton" :link="isLink" size="small" :numForLine="12" email="171079@">
-        <span slot="top" slot-scope="num">custom-top {{ num }}</span>
-        <span slot="bottom">custom-bottom</span>
-      </custom-button>
+
       <a-table :columns="columns" :data-source="data">
         <a slot="name" slot-scope="text">{{ text }} 数据</a>
         <span slot="customTitle">
@@ -74,6 +77,8 @@ import { mapState, mapMutations, mapGetters } from 'vuex';
 import moment from 'moment';
 import Vue from 'vue';
 import CustomButton from './CustomButton.vue';
+import CustomInput from './CustomInput.vue';
+
 const columns = [
   {
     dataIndex: 'name',
@@ -138,7 +143,8 @@ export default {
     msg: String
   },
   components: {
-    CustomButton
+    CustomButton, CustomInput
+
   },
   computed: {
     ...mapState('helloStore', ['num']),
@@ -157,7 +163,9 @@ export default {
       hobby: {
         name: 'football',
         age: 18
-      }
+      },
+      phone: 122355,
+      customModel: 'custom-model'
     };
   },
   mounted() {

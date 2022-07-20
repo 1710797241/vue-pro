@@ -36,6 +36,12 @@ export default {
         console.log('validator', value);
         return value && value.includes('@')
       }
+    },
+    phone: {
+      type: String,
+      validator: function (value) {
+        return value && value.length > 13
+      }
     }
   },
   computed: {
