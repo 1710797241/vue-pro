@@ -39,6 +39,8 @@
         <h1>simple缩写</h1>
       </template>
     </custom-card>
+    <h1>过渡动画</h1>
+    <custom-transition></custom-transition>
     <div v-if="show">show</div>
     <div v-else>hidden</div>
     <button @click="handleChangeStatus(!show)">{{ show ? 'hidden' : 'show' }}</button>
@@ -93,7 +95,9 @@ import moment from 'moment';
 import Vue from 'vue';
 import CustomButton from './CustomButton.vue';
 import CustomInput from './CustomInput.vue';
+import CustomTransition from './CustomTransition.vue';
 // import CustomCard from './CustomCard.vue';
+
 const columns = [
   {
     dataIndex: 'name',
@@ -163,7 +167,10 @@ export default {
     }
   },
   components: {
-    CustomButton, CustomInput, CustomCard: () => import('./CustomCard.vue')
+    CustomButton,
+    CustomInput,
+    CustomCard: () => import('./CustomCard.vue'),
+    CustomTransition
 
   },
   computed: {
