@@ -160,7 +160,7 @@ export default {
   name: 'HelloWorld',
   msg: {
     type: String,
-    defalut: ''
+    defalut: 'HelloWorld'
   },
   provide: function () {
     return {

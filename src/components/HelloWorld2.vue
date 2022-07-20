@@ -24,7 +24,7 @@ export default {
   props: {
     msg: {
       type: String,
-      defalut: ''
+      defalut: 'HelloWorld2'
     }
   },
   computed: {
