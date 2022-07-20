@@ -24,6 +24,15 @@
       <span slot="bottom">custom-bottom</span>
     </custom-button>
     <custom-input v-model="customModel"></custom-input>
+    <custom-card>
+      <template v-slot:header="user">
+        <h1>header{{ user.firstName }}</h1>
+      </template>
+      <span slot="content" slot-scope="user">{{ user.lastName }}content</span>
+      <template v-slot:footer="{ user }">
+        <h1>footer{{ user.lastName }}</h1>
+      </template>
+    </custom-card>
     <div v-if="show">show</div>
     <div v-else>hidden</div>
     <button @click="handleChangeStatus(!show)">{{ show ? 'hidden' : 'show' }}</button>
@@ -78,7 +87,7 @@ import moment from 'moment';
 import Vue from 'vue';
 import CustomButton from './CustomButton.vue';
 import CustomInput from './CustomInput.vue';
-
+import CustomCard from './CustomCard.vue';
 const columns = [
   {
     dataIndex: 'name',
@@ -143,7 +152,7 @@ export default {
     msg: String
   },
   components: {
-    CustomButton, CustomInput
+    CustomButton, CustomInput, CustomCard
 
   },
   computed: {
