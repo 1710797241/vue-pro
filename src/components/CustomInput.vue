@@ -10,13 +10,13 @@ export default {
   },
   props: {
     checked: {
-      type: String,
+      type: String
     }
   },
   methods: {
     handleChange(e) {
-      console.log(e.target.value);
-      this.$emit("change", e.target.value)
+      console.log(e.target.value)
+      this.$emit('change', e.target.value)
     }
   }
 }

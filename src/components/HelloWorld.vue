@@ -3,16 +3,16 @@
     <h1>{{ msg }}</h1>
     <!-- global -->
     <div>name:{{ $store.state.name }}</div>
-    <button v-on:click="handleChangeName">handleChangeName</button>
+    <button @click="handleChangeName">handleChangeName</button>
     <!-- helloStore  -->
     <div>num: {{ $store.state.helloStore.num }}</div>
     <div>num1: {{ num }}</div>
     <div>newNum:{{ newNum }}</div>
-    <button v-on:click="handleClick">click</button>
-    <button v-on:click="add({ num: 1000 })">click1</button>
-    <button v-on:click="add({ num: 100 })">click2</button>
+    <button @click="handleClick">click</button>
+    <button @click="add({ num: 1000 })">click1</button>
+    <button @click="add({ num: 100 })">click2</button>
     <div>遍历数组</div>
-    <div v-for="(item, index) in list" v-bind:key="'list' + index">{{ index + 1 }}:{{ item }}</div>
+    <div v-for="(item, index) in list" :key="'list' + index">{{ index + 1 }}:{{ item }}</div>
     <div>遍历object</div>
     <div v-for="(item, name, index) in hobby" :key="'hobby' + index">
       index:{{ index }}--name:{{ name }}--value:{{ item }}
@@ -54,7 +54,7 @@
         <h1>antd</h1>
         <button :style="{ color: 'orange' }">style</button>
       </template>
-      <a-date-picker v-bind:value="value1" @change="onChange" />
+      <a-date-picker :value="value1" @change="onChange" />
 
       <a-table :columns="columns" :data-source="data">
         <a slot="name" slot-scope="text">{{ text }} 数据</a>
@@ -89,13 +89,13 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters } from 'vuex';
+import { mapState, mapMutations, mapGetters } from 'vuex'
 
-import moment from 'moment';
-import Vue from 'vue';
-import CustomButton from './CustomButton.vue';
-import CustomInput from './CustomInput.vue';
-import CustomTransition from './CustomTransition.vue';
+import moment from 'moment'
+import Vue from 'vue'
+import CustomButton from './CustomButton.vue'
+import CustomInput from './CustomInput.vue'
+import CustomTransition from './CustomTransition.vue'
 // import CustomCard from './CustomCard.vue';
 
 const columns = [
@@ -126,7 +126,7 @@ const columns = [
     key: 'action',
     scopedSlots: { customRender: 'action' }
   }
-];
+]
 
 const data = [
   {
@@ -150,16 +150,17 @@ const data = [
     address: 'Sidney No. 1 Lake Park',
     tags: ['cool', 'teacher']
   }
-];
+]
 
 Vue.component('qi-ye', {
   props: ['name'],
   template: `<div>{{name}}</div>`
-});
+})
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
+  msg: {
+    type: String,
+    defalut: ''
   },
   provide: function () {
     return {
@@ -193,68 +194,67 @@ export default {
       },
       phone: 122355,
       customModel: 'custom-model'
-    };
+    }
   },
   mounted() {
-    console.log('did', this, 'root', this.$root, 'parent', this.$parent);
-
+    console.log('did', this, 'root', this.$root, 'parent', this.$parent)
   },
   methods: {
     handleCustomButton(val) {
-      console.log(val, 'handleCustomButton');
+      console.log(val, 'handleCustomButton')
     },
     handlePushItem() {
-      this.list.push(new Date().getTime());
+      this.list.push(new Date().getTime())
     },
     handleChangeStatus(status) {
-      this.show = status;
+      this.show = status
     },
     handleKeyword(e) {
-      console.log(e.target.value, 'keyword');
-      this.keyword = e.target.value;
+      console.log(e.target.value, 'keyword')
+      this.keyword = e.target.value
     },
     confirm() {
       this.$notification.success({
         message: 'ok',
         description: 'xxxxxxx........'
-      });
+      })
     },
     cancel() {
       this.$notification.error({
         message: 'error',
         description: 'xxxxxxx........'
-      });
+      })
     },
     handleOK() {
-      this.$message.success('success');
+      this.$message.success('success')
     },
     handleModal(status, record) {
-      this.visible = status;
-      console.log('record', record);
+      this.visible = status
+      console.log('record', record)
     },
     handleCancel() {
-      this.visible = false;
+      this.visible = false
     },
     onChange(date, dateString) {
-      console.log('date', date, 'dateString', dateString);
-      this.value1 = date;
+      console.log('date', date, 'dateString', dateString)
+      this.value1 = date
     },
     handleClick() {
-      this.$store.commit('helloStore/add', { num: 5 }); //muatations
-      this.$store.dispatch('helloStore/add', { num: 4 });
+      this.$store.commit('helloStore/add', { num: 5 }) // muatations
+      this.$store.dispatch('helloStore/add', { num: 4 })
     },
     handleChangeName() {
-      this.$store.commit('add', { name: 'qiye' });
-      this.$store.dispatch('add', { name: 'qiyedao' });
+      this.$store.commit('add', { name: 'qiye' })
+      this.$store.dispatch('add', { name: 'qiyedao' })
     },
     ...mapMutations('helloStore', ['add'])
   },
   watch: {
     keyword: function (newVal) {
-      console.log('newVal', newVal);
+      console.log('newVal', newVal)
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

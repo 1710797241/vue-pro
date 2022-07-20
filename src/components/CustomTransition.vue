@@ -52,7 +52,6 @@ export default {
   transform: translate(0em, 2em);
 }
 
-
 .custom-leave-to
 
 /* .fade-leave-active below version 2.1.8 */

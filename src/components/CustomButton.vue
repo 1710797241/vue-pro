@@ -33,7 +33,7 @@ export default {
     email: {
       type: String,
       validator: function (value) {
-        console.log('validator', value);
+        console.log('validator', value)
         return value && value.includes('@')
       }
     },
@@ -56,7 +56,7 @@ export default {
     }
   },
   created() {
-    console.log('button 实例', this);
+    console.log('button 实例', this)
   }
 
 }
