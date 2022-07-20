@@ -19,7 +19,12 @@
     </div>
     <button @click="handlePushItem">push item to list</button>
     <h1>自定义组件</h1>
-    <custom-button @click="handleCustomButton" :link="isLink" size="small" :numForLine="12" email="171079@"
+    <custom-button
+      @click="handleCustomButton"
+      :link="isLink"
+      size="small"
+      :numForLine="12"
+      email="171079@"
       :phone="phone">
       <span slot="top" slot-scope="num">custom-top {{ num }}</span>
       <span slot="bottom">custom-bottom</span>
@@ -64,7 +69,9 @@
         </span>
 
         <span slot="tags" slot-scope="tags">
-          <a-tag v-for="tag in tags" :key="tag"
+          <a-tag
+            v-for="tag in tags"
+            :key="tag"
             :color="tag === 'loser' ? 'volcano' : tag.length > 5 ? 'geekblue' : 'green'">
             {{ tag.toUpperCase() }}
           </a-tag>
@@ -74,7 +81,11 @@
           <a @click="handleModal(true, record)">编辑</a>
           <a-divider type="vertical" />
 
-          <a-popconfirm title="Are you sure delete this task?" ok-text="Yes" cancel-text="No" @confirm="confirm"
+          <a-popconfirm
+            title="Are you sure delete this task?"
+            ok-text="Yes"
+            cancel-text="No"
+            @confirm="confirm"
             @cancel="cancel">
             <a href="#">Delete</a>
           </a-popconfirm>
