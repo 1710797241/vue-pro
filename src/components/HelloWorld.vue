@@ -11,7 +11,10 @@
     <button v-on:click="handleClick">click</button>
      <button v-on:click="add({num:1000})">click1</button>
      <button v-on:click="add({num:100})">click2</button>
+     <div>遍历数组</div>
      <div v-for="(item,index) in list" v-bind:key="index">{{index+1}}:{{item}}</div>
+      <div>遍历object</div>
+      <div v-for="(item,name,index) in hobby" :key="index">index:{{index}}--name:{{name}}--value:{{item}}</div>
      <button @click="handlePushItem">push item to list</button>
      <div v-if="show">show</div>
      <div v-else>hidden</div>
@@ -20,10 +23,17 @@
       <qi-ye name="liqiye"></qi-ye>
      </div>
       <div>
-        <input type="text" placeholder="keywords"  @change="handleKeyword">
+        <input type="text" placeholder="keywords"  @input="handleKeyword">
         <h1>待传输： {{keyword}}</h1>
-    <h1>antd</h1>
+   <template>
+     <h1>antd</h1>
+    <button :style="{color:'orange'}">style</button>
+   </template>
      <a-date-picker v-bind:value="value1" @change="onChange"/>
+     <custom-button @click="handleCustomButton" :link="isLink" size="small" >
+      <span slot="top" slot-scope="num"> custom-top {{num}}</span>
+       <span slot="bottom"> custom-bottom</span>
+     </custom-button>
       <a-table :columns="columns" :data-source="data">
     <a slot="name" slot-scope="text">{{ text }} 数据</a>
     <span slot="customTitle"><a-icon type="smile-o" /> Name 自定义表头</span>
@@ -63,15 +73,17 @@
     > <a-spin size="large"/>
       <p>modal</p>
     </a-modal>
+    
   </div>
   </div>
- 
 </template>
 
 <script>
 import { mapState,mapMutations,mapGetters } from 'vuex';
+
 import moment from 'moment';
 import Vue from 'vue';
+import CustomButton from './CustomButton.vue';
 const columns = [
   {
     dataIndex: 'name',
@@ -135,6 +147,9 @@ export default {
   props: {
     msg: String
   },
+  components:{
+    CustomButton
+  },
   computed:{
     ...mapState('helloStore',['num']),
     ...mapGetters('helloStore',['newNum'])
@@ -147,13 +162,21 @@ export default {
       visible:false,
       keyword:'',
       list:[1,2,3,4,5,6],
-      show:true
+      show:true,
+      isLink:true,
+      hobby:{
+        name:'football',
+        age:18
+      }
   }
   },  
   mounted(){
     console.log('did',this);
   },
   methods:{
+    handleCustomButton(val){
+      console.log(val,'handleCustomButton');
+    },
     handlePushItem(){
       this.list.push(new Date().getTime())
     },
@@ -200,6 +223,11 @@ export default {
     },  
     ...mapMutations('helloStore',['add']),
     
+  },
+  watch:{
+    'keyword':function(newVal){
+      console.log('newVal',newVal);
+    }
   }
 }
 </script>
