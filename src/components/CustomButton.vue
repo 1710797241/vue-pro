@@ -12,7 +12,7 @@
 
 <script>
 export default {
-
+  inject: ['customConfirm'],
   props: {
     text: {
       type: String,
@@ -51,8 +51,12 @@ export default {
   },
   methods: {
     handleClick() {
+      this.customConfirm()
       this.$emit('click', this.text)
     }
+  },
+  created() {
+    console.log('button 实例', this);
   }
 
 }

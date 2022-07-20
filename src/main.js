@@ -10,4 +10,11 @@ import 'ant-design-vue/dist/antd.css'; // or 'ant-design-vue/dist/antd.less'
 Vue.config.productionTip = false;
 Vue.use(Element);
 Vue.use(Antd);
-new Vue({ store, router, render: h => h(App) }).$mount('#app');
+new Vue({
+    data: {
+        root: true
+    },
+    store,
+    router,
+    render: h => h(App)
+}).$mount('#app');

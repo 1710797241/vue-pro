@@ -93,7 +93,7 @@ import moment from 'moment';
 import Vue from 'vue';
 import CustomButton from './CustomButton.vue';
 import CustomInput from './CustomInput.vue';
-import CustomCard from './CustomCard.vue';
+// import CustomCard from './CustomCard.vue';
 const columns = [
   {
     dataIndex: 'name',
@@ -157,8 +157,13 @@ export default {
   props: {
     msg: String
   },
+  provide: function () {
+    return {
+      customConfirm: this.confirm
+    }
+  },
   components: {
-    CustomButton, CustomInput, CustomCard
+    CustomButton, CustomInput, CustomCard: () => import('./CustomCard.vue')
 
   },
   computed: {
@@ -184,7 +189,8 @@ export default {
     };
   },
   mounted() {
-    console.log('did', this);
+    console.log('did', this, 'root', this.$root, 'parent', this.$parent);
+
   },
   methods: {
     handleCustomButton(val) {
