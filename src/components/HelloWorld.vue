@@ -50,6 +50,8 @@
     <div>
       <input type="text" placeholder="keywords" @input="handleKeyword" />
       <h1>待传输： {{ keyword }}</h1>
+      <h1>指令</h1>
+      <input placeholder="指令" type="text" v-action:demo.admin="data" v-hello>
       <template>
         <h1>antd</h1>
         <button :style="{ color: 'orange' }">style</button>
@@ -96,6 +98,7 @@ import Vue from 'vue';
 import CustomButton from './CustomButton.vue';
 import CustomInput from './CustomInput.vue';
 import CustomTransition from './CustomTransition.vue';
+import permission from './../mixins/permission'
 // import CustomCard from './CustomCard.vue';
 
 const columns = [
@@ -151,7 +154,7 @@ const data = [
     tags: ['cool', 'teacher']
   }
 ];
-
+// 全局组件
 Vue.component('qi-ye', {
   props: ['name'],
   template: `<div>{{name}}</div>`
@@ -160,6 +163,20 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  mixins: [permission],
+  directives: {
+    hello: {
+      bind: function (el) {
+        console.log('directive-hello:bind', el);
+      },
+      inserted: function (el) {
+        console.log('directive-hello:inserted', el);
+      },
+      update: function (el) {
+        console.log('directive-hello:update', el);
+      }
+    }
   },
   provide: function () {
     return {
@@ -195,8 +212,12 @@ export default {
       customModel: 'custom-model'
     };
   },
+  beforeCreate() {
+    console.log('组件自身 permission',);
+  },
   mounted() {
     console.log('did', this, 'root', this.$root, 'parent', this.$parent);
+    console.log('data mixins', this.mixins);
 
   },
   methods: {
