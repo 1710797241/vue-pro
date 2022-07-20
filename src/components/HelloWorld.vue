@@ -18,19 +18,25 @@
       index:{{ index }}--name:{{ name }}--value:{{ item }}
     </div>
     <button @click="handlePushItem">push item to list</button>
+    <h1>自定义组件</h1>
     <custom-button @click="handleCustomButton" :link="isLink" size="small" :numForLine="12" email="171079@"
       :phone="phone">
       <span slot="top" slot-scope="num">custom-top {{ num }}</span>
       <span slot="bottom">custom-bottom</span>
     </custom-button>
+    <h1>自定义model</h1>
     <custom-input v-model="customModel"></custom-input>
+    <h1>插槽</h1>
     <custom-card>
       <template v-slot:header="user">
         <h1>header{{ user.firstName }}</h1>
       </template>
-      <span slot="content" slot-scope="user">{{ user.lastName }}content</span>
+      <span slot="content" slot-scope="user">{{ user.lastName }}content通过插槽获取子组件数据</span>
       <template v-slot:footer="{ user }">
-        <h1>footer{{ user.lastName }}</h1>
+        <h1>footer{{ user.lastName }}通过插槽获取子组件数据</h1>
+      </template>
+      <template #simple>
+        <h1>simple缩写</h1>
       </template>
     </custom-card>
     <div v-if="show">show</div>

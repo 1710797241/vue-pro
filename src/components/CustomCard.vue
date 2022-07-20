@@ -5,7 +5,7 @@
       {{ user.firstName }}
     </slot>
     <slot name="footer" v-bind="{ user }"></slot>
-
+    <slot name="simple">缩写</slot>
   </div>
 </template>
 
