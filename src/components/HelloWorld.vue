@@ -51,7 +51,7 @@
       <input type="text" placeholder="keywords" @input="handleKeyword" />
       <h1>待传输： {{ keyword }}</h1>
       <h1>指令</h1>
-      <input placeholder="指令" type="text" v-action:demo.admin="data" v-hello>
+      <input placeholder="指令" type="text" v-action:demo.admin="{ name: 'table', data }" v-hello>
       <template>
         <h1>antd</h1>
         <button :style="{ color: 'orange' }">style</button>
