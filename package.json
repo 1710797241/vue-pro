@@ -9,14 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "ant-design-vue": "1.x",
     "vue": "2.6.14",
     "vue-router": "3.x",
     "vue-template-compiler": "2.6.14",
     "vuex": "3.x"
   },
   "devDependencies": {
-    "vite": "^3.0.0",
+    "@vitejs/plugin-legacy": "^2.0.0",
+    "terser": "5.4.0",
+    "vite": "3.0.2",
     "vite-plugin-vue2": "^2.0.2"
   }
 }

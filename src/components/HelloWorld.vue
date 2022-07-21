@@ -1,3 +1,8 @@
 <template>
-  <div>hello</div>
+  <div>hello routers</div>
 </template>
+<script>
+export default {
+
+}
+</script>
