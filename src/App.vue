@@ -5,19 +5,52 @@
     <div>
       <router-link to="/hello">to hello</router-link>
     </div>
-
+    <h1>计数</h1>
+    <div>origin: {{ this.$store.state.helloStore.count }}</div>
+    <div>newCount: {{ newCount }}</div>
+    <div>age: {{ age }}</div>
+    <button @click="Add">add</button>
+    <button @click="Minus">minus</button>
+    <button @click="handleAdd">async add</button>
     <router-view></router-view>
   </div>
 </template>
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   components: {
     HelloWorld
   },
+  mounted() {
+    console.log('this', this.$store.state);
+  },
+  data() {
+    return {
+
+    }
+  },
+  computed: {
+    ...mapGetters(['newCount']),
+    ...mapState({
+      age: state => {
+
+        console.log(state, 'satet');
+        return state.helloStore.age
+      }
+    })
+  },
   methods: {
-    handleInfo() {
-      this.$message.info("info")
+    ...mapActions(['handleAdd']),
+    Add() {
+      this.$store.commit('add', {
+        count: 1
+      })
+    },
+    Minus() {
+      this.$store.commit("minus", {
+        count: 1
+      })
     }
   }
 }
