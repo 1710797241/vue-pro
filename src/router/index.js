@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
-import HelloWorld2 from '@/components/HelloWorld2';
+
 import BasicLayout from '@/layouts/BasicLayout';
 Vue.use(VueRouter);
 
@@ -26,7 +26,7 @@ const routes = [
             {
                 path: '/hello/:id',
                 name: 'hello',
-                component: HelloWorld2
+                component: () => import('@/components/HelloWorld2')
             },
             {
                 path: '*',
