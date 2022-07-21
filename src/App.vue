@@ -5,6 +5,7 @@
     <div>
       <router-link to="/hello">to hello</router-link>
     </div>
+    <h2>无命名空间</h2>
     <h1>计数</h1>
     <div>origin: {{ this.$store.state.helloStore.count }}</div>
     <div>newCount: {{ newCount }}</div>
