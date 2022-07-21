@@ -1,7 +1,10 @@
 
+
 <template>
   <div>
     app
+    <a-button type="primary">click</a-button>
+
     <hello-world />
   </div>
 </template>
