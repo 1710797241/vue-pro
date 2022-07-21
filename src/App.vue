@@ -15,6 +15,7 @@
     <button @click="handleAdd">async add</button>
     <el-button type='primary'>element-ui</el-button>
     <a-button></a-button>
+    <a-spin />
     <router-view></router-view>
   </div>
 </template>

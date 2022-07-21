@@ -8,8 +8,16 @@ export default defineConfig({
     plugins: [
         createVuePlugin(),
         vueJsx(),
+
         legacy({
             targets: ['defaults', 'not IE 11']
         })
-    ]
+    ],
+    css: {
+        preprocessorOptions: {
+            less: {
+                javascriptEnabled: true
+            }
+        }
+    }
 });
