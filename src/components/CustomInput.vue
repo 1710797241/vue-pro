@@ -17,6 +17,7 @@ export default {
     handleChange(e) {
       console.log(e.target.value);
       this.$emit("change", e.target.value)
+      this.$bus.$emit("addMoney", { status: e.target.value })
     }
   }
 }

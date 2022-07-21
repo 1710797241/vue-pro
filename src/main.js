@@ -14,6 +14,10 @@ new Vue({
     data: {
         root: true
     },
+    beforeCreate() {
+        Vue.prototype.$bus = this;
+        console.log('root vm', this);
+    },
     store,
     router,
     render: h => h(App)

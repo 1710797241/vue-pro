@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <router-link to="/hello"> HelloWorld2</router-link>
     <h1>{{ msg }}</h1>
     <!-- global -->
     <div>name:{{ $store.state.name }}</div>
@@ -216,6 +217,10 @@ export default {
     console.log('组件自身 permission',);
   },
   mounted() {
+    this.$bus.$on("addMoney", (val) => {
+      console.log('MessageCenter', val);
+    })
+    console.log(' this.$bus', this.$bus);
     console.log('did', this, 'root', this.$root, 'parent', this.$parent);
     console.log('data mixins', this.mixins);
 
