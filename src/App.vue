@@ -13,6 +13,7 @@
     <button @click="Add">add</button>
     <button @click="Minus">minus</button>
     <button @click="handleAdd">async add</button>
+    <el-button type='primary'>element-ui</el-button>
     <router-view></router-view>
   </div>
 </template>
