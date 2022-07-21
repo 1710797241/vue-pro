@@ -42,6 +42,8 @@
     </custom-card>
     <h1>过渡动画</h1>
     <custom-transition></custom-transition>
+    <h1>自定义过滤器</h1>
+    <div>{{ filter | upper }}</div>
     <div v-if="show">show</div>
     <div v-else>hidden</div>
     <button @click="handleChangeStatus(!show)">{{ show ? 'hidden' : 'show' }}</button>
@@ -210,7 +212,8 @@ export default {
         age: 18
       },
       phone: 122355,
-      customModel: 'custom-model'
+      customModel: 'custom-model',
+      filter: 'abcfilter'
     };
   },
   beforeCreate() {

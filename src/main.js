@@ -7,6 +7,7 @@ import Antd from 'ant-design-vue';
 import 'element-ui/lib/theme-chalk/index.css';
 import 'ant-design-vue/dist/antd.css'; // or 'ant-design-vue/dist/antd.less'
 import './directives/action';
+import './filters/upperCase';
 Vue.config.productionTip = false;
 Vue.use(Element);
 Vue.use(Antd);
