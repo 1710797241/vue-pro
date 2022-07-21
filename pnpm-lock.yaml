@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@vitejs/plugin-legacy': ^2.0.0
+  '@vitejs/plugin-vue2-jsx': ^1.0.2
   element-ui: ^2.15.9
   terser: 5.4.0
   vite: 3.0.2
@@ -20,6 +21,7 @@ dependencies:
 
 devDependencies:
   '@vitejs/plugin-legacy': 2.0.0_terser@5.4.0+vite@3.0.2
+  '@vitejs/plugin-vue2-jsx': 1.0.2_vite@3.0.2+vue@2.6.14
   terser: 5.4.0
   vite: 3.0.2_terser@5.4.0
   vite-plugin-vue2: 2.0.2_varglluxgpmmxsbkw36pfm2omu
@@ -326,6 +328,15 @@ packages:
       '@babel/helper-plugin-utils': 7.18.9
     dev: true
 
+  /@babel/plugin-syntax-import-meta/7.10.4_@babel+core@7.18.9:
+    resolution: {integrity: sha512-Yqfm+XDx0+Prh3VSeEQCPU81yC+JWZ2pDPFSS4ZdpfZhp4MkFMaDC1UqseovEKwSUpnIL7+vK+Clp7bfh0iD7g==}
+    peerDependencies:
+      '@babel/core': ^7.0.0-0
+    dependencies:
+      '@babel/core': 7.18.9
+      '@babel/helper-plugin-utils': 7.18.9
+    dev: true
+
   /@babel/plugin-syntax-jsx/7.18.6_@babel+core@7.18.9:
     resolution: {integrity: sha512-6mmljtAedFGTWu2p/8WIORGwy+61PLgOMPOdazc7YoJ9ZCWUyFy3A6CpPkRKLKD1ToAesxX8KGEViAiLo9N+7Q==}
     engines: {node: '>=6.9.0'}
@@ -548,6 +559,24 @@ packages:
       systemjs: 6.12.1
       terser: 5.4.0
       vite: 3.0.2_terser@5.4.0
+    dev: true
+
+  /@vitejs/plugin-vue2-jsx/1.0.2_vite@3.0.2+vue@2.6.14:
+    resolution: {integrity: sha512-XcjKPz4/CsFDzrDI+wWQqNuu9h+5UhXVTg/NF2lvlXXJQNp93UdYZs3wVEX6PQgo2wGhdx66tuuYf7rwzS8DpQ==}
+    engines: {node: '>=14.18.0'}
+    peerDependencies:
+      vite: ^2.9.13 || ^3.0.0
+      vue: ^2.7.0
+    dependencies:
+      '@babel/core': 7.18.9
+      '@babel/plugin-syntax-import-meta': 7.10.4_@babel+core@7.18.9
+      '@babel/plugin-transform-typescript': 7.18.8_@babel+core@7.18.9
+      '@rollup/pluginutils': 4.2.1
+      '@vue/babel-preset-jsx': 1.3.0_yvc4fsnpp2wgj3sogyosyjaasy
+      vite: 3.0.2_terser@5.4.0
+      vue: 2.6.14
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /@vue/babel-helper-vue-jsx-merge-props/1.2.1:

@@ -14,6 +14,7 @@
     <button @click="Minus">minus</button>
     <button @click="handleAdd">async add</button>
     <el-button type='primary'>element-ui</el-button>
+    <a-button></a-button>
     <router-view></router-view>
   </div>
 </template>
