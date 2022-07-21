@@ -14,6 +14,7 @@
     <hr>
     <el-button type="primary" size="default">button</el-button>
     <qi-ye name="hello2"></qi-ye>
+    <button @click="handlePush(1)">router </button>
   </div>
 </template>
 
@@ -29,7 +30,7 @@ export default {
     ...mapGetters('helloStore', ['newNum'])
   },
   mounted() {
-    console.log('did', this);
+    console.log('did', this.$route.params);
 
   },
   beforeRouteEnter(to, from, next) {
@@ -38,6 +39,14 @@ export default {
     next()
   },
   methods: {
+    handlePush(val) {
+      this.$router.push({
+        path: '/',
+        query: {
+          val
+        }
+      })
+    },
     handleClick() {
       this.$store.commit("helloStore/add", { num: 5 })//muatations
       this.$store.dispatch("helloStore/add", { num: 4 })

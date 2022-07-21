@@ -11,6 +11,14 @@ import './filters/upperCase';
 Vue.config.productionTip = false;
 Vue.use(Element);
 Vue.use(Antd);
+router.beforeEach((to, from, next) => {
+    console.log('beforeEach', to, from);
+
+    next();
+});
+router.afterEach(() => {
+    console.log('afterEach');
+});
 new Vue({
     data: {
         root: true
@@ -19,6 +27,7 @@ new Vue({
         Vue.prototype.$bus = this;
         console.log('root vm', this);
     },
+
     store,
     router,
     render: h => h(App)

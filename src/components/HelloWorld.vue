@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
     <router-link to="/hello"> HelloWorld2</router-link>
+    <router-link to="/hello/125"> HelloWorld2传参数</router-link>
+
     <h1>{{ msg }}</h1>
     <!-- global -->
     <div>name:{{ $store.state.name }}</div>
