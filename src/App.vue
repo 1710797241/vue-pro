@@ -1,7 +1,14 @@
 <script setup>
-// This starter template is using Vue 3 <script setup> SFCs
-// Check out https://vuejs.org/api/sfc-script-setup.html#script-setup
+import TransitionDemo from './components/Transition.vue';
 import HelloWorld from './components/HelloWorld.vue'
+import Composition from './components/Composition.vue';
+import { provide, ref } from 'vue';
+const location = ref({ lat: 0, lng: 0 });
+const updateLocation = (value) => {
+  location.value = value
+}
+provide('location', location)
+provide('updateLocation', updateLocation)
 </script>
 
 <template>
@@ -13,7 +20,9 @@ import HelloWorld from './components/HelloWorld.vue'
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
+  <HelloWorld />
+  <TransitionDemo />
+  <Composition :user="{ name: 'qiye' }" data-status="active" />
 </template>
 
 <style scoped>
@@ -22,9 +31,11 @@ import HelloWorld from './components/HelloWorld.vue'
   padding: 1.5em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
