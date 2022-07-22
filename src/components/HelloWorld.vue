@@ -14,7 +14,7 @@ const HelloWorld = defineAsyncComponent(() =>
         }
       },
       mounted() {
-        console.log(' this.$refs', this.$refs);
+        console.log(' this.$store', this.$store.state.count);
         this.$refs.inputRef.focus()
       },
       methods: {

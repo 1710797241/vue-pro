@@ -11,7 +11,7 @@ const route = useRoute()
 const router = useRouter()
 const store = useStore()
 onMounted(() => {
-  console.log('store', store);
+  console.log('store', store,);
 })
 const handleRouter = (path, params) => {
   router.push({
