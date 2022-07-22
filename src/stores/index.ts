@@ -1,10 +1,8 @@
 import { createStore } from 'vuex';
-import root from './root';
-import hello from './modules/hello';
+import doc from './doc';
 const store = createStore({
-    ...root,
     modules: {
-        hello
+        doc
     }
 });
 export default store;
