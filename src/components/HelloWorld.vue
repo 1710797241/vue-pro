@@ -22,6 +22,8 @@ const HelloWorld = defineAsyncComponent(() =>
           console.log(el, this);
         }
       },
+
+
     })
   }))
 export default HelloWorld
