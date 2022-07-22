@@ -3,11 +3,14 @@
 import { RouterConfig } from 'umi';
 import store from './stores/index';
 import { createPinia } from 'pinia';
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 export function onAppCreated({ app }: any) {
     console.log('onAppCreated', app);
     const pinia = createPinia();
     app.use(pinia);
     app.use(store);
+    app.use(ElementPlus);
 }
 
 export function onRouterCreated({ router }: any) {

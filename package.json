@@ -8,6 +8,7 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "element-plus": "^2.2.10",
     "pinia": "^2.0.16",
     "umi": "^4.0.8",
     "vue": "^3.2.36",
