@@ -1,15 +1,17 @@
 export default [
     {
         path: '/',
-        component: 'index'
+        component: 'index',
+        name: 'index'
     },
     {
         path: '/docs/:id',
-        component: 'docs'
-    },
-    {
-        path: '/:pathMatch(.*)*',
-        name: 'NotFound',
-        component: '404'
+        component: 'docs',
+        name: 'docs'
     }
+    // {
+    //     path: '/:pathMatch(.*)*',
+    //     name: 'NotFound',
+    //     component: '404'
+    // }
 ];

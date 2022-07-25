@@ -4,17 +4,14 @@ import { RouterConfig } from 'umi';
 import store from './stores/index';
 import { createPinia } from 'pinia';
 import ElementPlus from 'element-plus';
-import {
-    h,
-    type RendererElement,
-    type RendererNode,
-    type VNode,
-    type VNodeArrayChildren
-} from 'vue';
+import ProLayout, { PageContainer } from '@ant-design-vue/pro-layout';
+
 import 'element-plus/dist/index.css';
 export function onAppCreated({ app }: any) {
     console.log('onAppCreated', app);
     const pinia = createPinia();
+    app.use(ProLayout);
+    app.use(PageContainer);
     app.use(pinia);
     app.use(store);
     app.use(ElementPlus);

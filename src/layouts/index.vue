@@ -1,12 +1,34 @@
 <script lang="ts" setup>
-import { useRouter } from 'umi'
+import { useRouter, } from 'umi'
+import { getMenuData, clearMenuItem } from '@ant-design-vue/pro-layout';
+import { reactive, onMounted } from 'vue'
+const locale = (i18n: string) => i18n;
 const router = useRouter();
+
+const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
+
+const state = reactive({
+  collapsed: false, // default value
+  openKeys: ['/'],
+  selectedKeys: ['/'],
+})
+const layoutConf = reactive({
+  navTheme: 'dark',
+  layout: 'mix',
+  splitMenus: false,
+  menuData,
+});
 const handleDocs = () => {
   router.push({
     path: `/docs/${Math.random()}`,
 
   })
 }
+onMounted(() => {
+  console.log('routes', router.getRoutes());
+
+})
+
 
 </script>
 <template>
@@ -22,7 +44,11 @@ const handleDocs = () => {
       <button @click="handleDocs">传参到docs</button>
 
     </ul>
-    <router-view></router-view>
+    <pro-layout :locale="locale" v-bind="layoutConf" v-model:openKeys="state.openKeys"
+      v-model:collapsed="state.collapsed" navTheme="dark" v-model:selectedKeys="state.selectedKeys">
+      <router-view />
+    </pro-layout>
+
   </div>
 </template>
 <style lang="less">
