@@ -1,5 +1,5 @@
 module.exports = api => {
-    console.log('api', api.userConfig);
+    console.log('api');
     api.describe({
         key: 'changeFavicon',
         config: {
