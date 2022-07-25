@@ -3,7 +3,7 @@
     <p>This is umi docs.</p>
     <button @click="add">count:{{ store.state.doc.count }}</button><br />
     <button @click="minus">count:{{ store.state.doc.count }}</button><br />
-    <button>newCount:{{ newCount }}</button>
+    <button class="yiyi-color">newCount:{{ newCount }}</button>
     <button @click="handleTimes">times:{{ times[0].name }}</button>
     <button @click="handleTimes">obj:{{ obj.name }}</button>
 
@@ -51,6 +51,26 @@ watch(() => route.params.id, async (newId) => {
 })
 
 const umiHello = toRef(inject('umi-hello'), 'w')
+const tempObj = { name: 'qiye', age: 18 }
+const proxyObj = new Proxy(tempObj, {
+  get: function (target, attr, receiver) {
+    console.log('target', target, 'attr', attr, 'receiver', receiver);
+    return Reflect.get(target, attr, receiver);
+
+  },
+  set: function (target, attr, receiver) {
+    console.log('target', target, 'attr', attr, 'receiver', receiver);
+    return Reflect.set(target, attr, receiver);
+
+
+  },
+  has: function (target, prop) {
+    var res = Reflect.has(target, prop);
+    console.log('Proxy.has', target, 'target', '===props', prop, target === obj);
+    return res;
+  },
+})
+window.proxyObj = proxyObj
 onMounted(() => {
   console.log('route', route, route.params, 'store', store, 'docStore', docStore, 'addressStore', addressStore);
 })
@@ -59,3 +79,8 @@ onMounted(() => {
 
 
 </script>
+<style lang="less">
+.yiyi-color {
+  color: var(--yiyi-color)
+}
+</style>
