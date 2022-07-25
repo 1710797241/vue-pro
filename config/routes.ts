@@ -5,7 +5,7 @@ export default [
     },
     {
         path: '/docs/:id',
-        component: 'docs/index'
+        component: 'docs'
     },
     {
         path: '/:pathMatch(.*)*',

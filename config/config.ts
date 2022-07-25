@@ -7,5 +7,6 @@ export default defineConfig({
     npmClient: 'pnpm',
 
     presets: [require.resolve('@umijs/preset-vue')],
-    routes
+    routes,
+    changeFavicon: 'https://vitejs.cn/logo.svg'
 });

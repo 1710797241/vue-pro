@@ -10,3 +10,13 @@ export const useDocStore = defineStore('main', {
         };
     }
 });
+
+export const useAddressStore = defineStore('address', {
+    state: () => {
+        return {
+            // all these properties will have their type inferred automatically
+            city: 'nj',
+            name: '南京'
+        };
+    }
+});
