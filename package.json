@@ -1,25 +1,32 @@
 {
+  "name": "test-ssr-vue",
   "private": true,
-  "author": "wangzhongyong <wzy@kgtdata.com>",
+  "version": "0.0.0",
   "scripts": {
-    "dev": "cross-env UMI_PLUGINS=./src/plugins/demo.js umi dev",
-    "build": "umi build",
-    "postinstall": "umi setup",
-    "start": "npm run dev"
+    "dev": "node server",
+    "build": "npm run build:client && npm run build:server",
+    "build:noExternal": "npm run build:client && npm run build:server:noExternal",
+    "build:client": "vite build --ssrManifest --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.js --outDir dist/server",
+    "build:server:noExternal": "vite build --config vite.config.noexternal.js --ssr src/entry-server.js --outDir dist/server",
+    "generate": "vite build --ssrManifest --outDir dist/static && npm run build:server && node prerender",
+    "serve": "cross-env NODE_ENV=production node server",
+    "debug": "node --inspect-brk server"
   },
   "dependencies": {
-    "@ant-design-vue/pro-layout": "^3.2.3",
-    "@ant-design/icons-vue": "^6.1.0",
-    "element-plus": "^2.2.10",
-    "pinia": "^2.0.16",
-    "umi": "^4.0.8",
-    "vue": "^3.2.36",
-    "vue-router": "4.0.14",
+    "example-external-component": "file:example-external-component",
+    "vue": "^3.2.37",
+    "vue-router": "^4.1.2",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
-    "@umijs/preset-vue": "^4.0.8",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "compression": "^1.7.4",
     "cross-env": "^7.0.3",
-    "typescript": "^4.1.2"
+    "dep-import-type": "link:./dep-import-type",
+    "express": "^4.18.1",
+    "serve-static": "^1.15.0",
+    "vite": "^3.0.3"
   }
 }
