@@ -12,6 +12,7 @@
     <button v-on:click="add({ num: 1000 })">click1</button>
     <button v-on:click="add({ num: 100 })">click2</button>
     <hr>
+    <el-skeleton />
     <el-tabs v-model="activeKey" @tab-click="handleTabs">
       <el-tab-pane v-for="item in panes" :key="item.key" :label="item.name" :name="item.key">
         <div v-show="item.key === '1'">tab1</div>
