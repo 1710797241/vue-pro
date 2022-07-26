@@ -12,6 +12,13 @@
     <button v-on:click="add({ num: 1000 })">click1</button>
     <button v-on:click="add({ num: 100 })">click2</button>
     <hr>
+    <el-tabs v-model="activeKey" @tab-click="handleTabs">
+      <el-tab-pane v-for="item in panes" :key="item.key" :label="item.name" :name="item.key">
+        <div v-show="item.key === '1'">tab1</div>
+        <div v-show="item.key === '2'">tab2</div>
+      </el-tab-pane>
+    </el-tabs>
+
     <el-button type="primary" size="default">button</el-button>
     <qi-ye name="hello2"></qi-ye>
     <button @click="handlePush(1)">router </button>
@@ -104,7 +111,10 @@ export default {
         desc: [
           { required: true, message: '请填写活动形式', trigger: 'change' }
         ]
-      }
+      },
+      activeKey: '2',
+      panes: [{ key: '1', name: 'tab1' }, { key: '2', name: 'tab2' }]
+
     }
   },
   computed: {
@@ -121,6 +131,10 @@ export default {
     next()
   },
   methods: {
+    handleTabs(tab, event) {
+      console.log(tab, 'tab', event, 'event');
+
+    },
     onSubmit() {
       console.log(this.$refs, 'refs');
       this.$refs.form.validate((valid) => {
