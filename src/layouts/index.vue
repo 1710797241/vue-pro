@@ -5,18 +5,23 @@ import { reactive, onMounted } from 'vue'
 const locale = (i18n: string) => i18n;
 const router = useRouter();
 
-const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
-
+const data = getMenuData(clearMenuItem(router.getRoutes()));
+const { menuData } = data
+console.log('menuData', menuData, 'clear', clearMenuItem(router.getRoutes()), 'data', data)
 const state = reactive({
   collapsed: false, // default value
   openKeys: ['/'],
   selectedKeys: ['/'],
 })
 const layoutConf = reactive({
-  navTheme: 'dark',
-  layout: 'mix',
-  splitMenus: false,
   menuData,
+  splitMenus: false,
+  title: 'ProLayout',
+  // logo: 'https://alicdn.antdv.com/v2/assets/logo.1ef800a8.svg',
+  navTheme: 'realDark',
+  layout: 'mix',
+  fixSiderbar: true,
+  fixedHeader: true,
 });
 const handleDocs = () => {
   router.push({
@@ -44,7 +49,7 @@ onMounted(() => {
       <button @click="handleDocs">传参到docs</button>
 
     </ul>
-    <pro-layout :locale="locale" v-bind="layoutConf" v-model:openKeys="state.openKeys"
+    <pro-layout style="min-height: 100vh" :locale="locale" v-bind="layoutConf" v-model:openKeys="state.openKeys"
       v-model:collapsed="state.collapsed" navTheme="dark" v-model:selectedKeys="state.selectedKeys">
       <router-view />
     </pro-layout>
