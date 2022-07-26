@@ -9,9 +9,4 @@ export default [
         component: 'docs',
         name: 'docs'
     }
-    // {
-    //     path: '/:pathMatch(.*)*',
-    //     name: 'NotFound',
-    //     component: '404'
-    // }
 ];

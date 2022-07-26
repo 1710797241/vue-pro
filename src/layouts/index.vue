@@ -1,71 +1,78 @@
-<script lang="ts" setup>
-import { useRouter, } from 'umi'
-import { getMenuData, clearMenuItem } from '@ant-design-vue/pro-layout';
-import { reactive, onMounted } from 'vue'
-const locale = (i18n: string) => i18n;
-const router = useRouter();
-
-const data = getMenuData(clearMenuItem(router.getRoutes()));
-const { menuData } = data
-console.log('menuData', menuData, 'clear', clearMenuItem(router.getRoutes()), 'data', data)
-const state = reactive({
-  collapsed: false, // default value
-  openKeys: ['/'],
-  selectedKeys: ['/'],
-})
-const layoutConf = reactive({
-  menuData,
-  splitMenus: false,
-  title: 'ProLayout',
-  // logo: 'https://alicdn.antdv.com/v2/assets/logo.1ef800a8.svg',
-  navTheme: 'realDark',
-  layout: 'mix',
-  fixSiderbar: true,
-  fixedHeader: true,
-});
-const handleDocs = () => {
-  router.push({
-    path: `/docs/${Math.random()}`,
-
-  })
-}
-onMounted(() => {
-  console.log('routes', router.getRoutes());
-
-})
-
-
-</script>
 <template>
-  <div class="navs">
-    <ul>
-      <li>
-        <router-link to="/">Home</router-link>
-      </li>
-      <li>
-        <router-link to="/docs/12">Docs</router-link>
-      </li>
+  <pro-layout v-model:collapsed="state.collapsed" v-model:selectedKeys="state.selectedKeys"
+    v-model:openKeys="state.openKeys" :loading="loading" :menu-data="menuData" :breadcrumb="{ routes: breadcrumb }"
+    disable-content-margin style="min-height: 100vh" iconfont-url="//at.alicdn.com/t/font_2804900_2sp8hxw3ln8.js"
+    v-bind="proConfig">
+    <template #menuHeaderRender>
+      <router-link :to="{ path: '/' }">
+        <img src="https://alicdn.antdv.com/v2/assets/logo.1ef800a8.svg" />
+        <h1>Preview Pro</h1>
+      </router-link>
+    </template>
 
-      <button @click="handleDocs">传参到docs</button>
-
-    </ul>
-    <pro-layout style="min-height: 100vh" :locale="locale" v-bind="layoutConf" v-model:openKeys="state.openKeys"
-      v-model:collapsed="state.collapsed" navTheme="dark" v-model:selectedKeys="state.selectedKeys">
-      <router-view />
-    </pro-layout>
-
-  </div>
+    <!-- custom breadcrumb itemRender  -->
+    <template #breadcrumbRender="{ route, params, routes }">
+      <span v-if="routes.indexOf(route) === routes.length - 1">
+        <HeartOutlined />
+        {{ route.breadcrumbName }}
+      </span>
+      <router-link v-else :to="{ path: route.path, params }">
+        <SmileOutlined />
+        {{ route.breadcrumbName }}
+      </router-link>
+    </template>
+    <RouterView v-slot="{ Component, route }">
+      <transition name="slide-left" mode="out-in">
+        <component :is="Component" :key="route.path" />
+      </transition>
+    </RouterView>
+  </pro-layout>
 </template>
-<style lang="less">
-.navs {
-  ul {
-    padding: 0;
-    list-style: none;
-    display: flex;
-  }
 
-  li {
-    margin-right: 1em;
-  }
-}
-</style>
+<script setup lang="ts">
+import { ref, reactive, computed, watch } from 'vue'
+import { useRouter, RouterView, RouterLink } from 'umi';
+import { getMenuData, clearMenuItem, type RouteContextProps } from '@ant-design-vue/pro-layout';
+import { SmileOutlined, HeartOutlined } from '@ant-design/icons-vue';
+
+const router = useRouter();
+const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
+
+const state = reactive<Omit<RouteContextProps, 'menuData'>>({
+  collapsed: false, // default collapsed
+  openKeys: [], // defualt openKeys
+  selectedKeys: [], // default selectedKeys
+});
+const loading = ref(false);
+const proConfig = ref({
+  layout: 'side',
+  navTheme: 'light',
+  fixedHeader: true,
+  fixSiderbar: true,
+  splitMenus: true,
+});
+const breadcrumb = computed(() =>
+  router.currentRoute.value.matched.concat().map(item => {
+    return {
+      path: item.path,
+      breadcrumbName: item.meta.title || '',
+    };
+  }),
+);
+const currentUser = reactive({
+  nickname: 'Admin',
+  avatar: 'A',
+});
+
+watch(
+  router.currentRoute,
+  () => {
+    const matched = router.currentRoute.value.matched.concat();
+    state.selectedKeys = matched.filter(r => r.name !== 'index').map(r => r.path);
+    state.openKeys = matched.filter(r => r.path !== router.currentRoute.value.path).map(r => r.path);
+  },
+  {
+    immediate: true,
+  },
+);
+</script>

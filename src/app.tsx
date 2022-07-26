@@ -5,7 +5,6 @@ import store from './stores/index';
 import { createPinia } from 'pinia';
 import ElementPlus from 'element-plus';
 import ProLayout, { PageContainer } from '@ant-design-vue/pro-layout';
-
 import 'element-plus/dist/index.css';
 export function onAppCreated({ app }: any) {
     console.log('onAppCreated', app);
@@ -15,6 +14,7 @@ export function onAppCreated({ app }: any) {
     app.use(pinia);
     app.use(store);
     app.use(ElementPlus);
+    // app.use(IconsVue);
 }
 
 export function onRouterCreated({ router }: any) {
