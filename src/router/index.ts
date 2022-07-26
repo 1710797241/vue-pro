@@ -26,7 +26,7 @@ export default createRouter({
         {
           path: '/admins',
           name: 'admins',
-          meta: { title: '管理页', icon: 'icon-tuijian', flat: true },
+          meta: { title: '管理页', icon: 'icon-tuijian', flat: false },
           component: BlankLayout,
           redirect: () => ({ name: 'page1' }),
           children: [

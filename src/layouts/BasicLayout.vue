@@ -1,16 +1,8 @@
 <template>
-  <pro-layout
-    v-model:collapsed="state.collapsed"
-    v-model:selectedKeys="state.selectedKeys"
-    v-model:openKeys="state.openKeys"
-    :loading="loading"
-    :menu-data="menuData"
-    :breadcrumb="{ routes: breadcrumb }"
-    disable-content-margin
-    style="min-height: 100vh"
-    iconfont-url="//at.alicdn.com/t/font_2804900_2sp8hxw3ln8.js"
-    v-bind="proConfig"
-  >
+  <pro-layout v-model:collapsed="state.collapsed" v-model:selectedKeys="state.selectedKeys"
+    v-model:openKeys="state.openKeys" :loading="loading" :menu-data="menuData" :breadcrumb="{ routes: breadcrumb }"
+    disable-content-margin style="min-height: 100vh" iconfont-url="//at.alicdn.com/t/font_2804900_2sp8hxw3ln8.js"
+    v-bind="proConfig">
     <template #menuHeaderRender>
       <router-link :to="{ path: '/' }">
         <img src="https://alicdn.antdv.com/v2/assets/logo.1ef800a8.svg" />
@@ -47,7 +39,7 @@ import { SmileOutlined, HeartOutlined } from '@ant-design/icons-vue';
 
 const router = useRouter();
 const { menuData } = getMenuData(clearMenuItem(router.getRoutes()));
-
+console.log('router.getRoutes()', router.getRoutes(), 'clear', clearMenuItem(router.getRoutes()), 'all', getMenuData(clearMenuItem(router.getRoutes())))
 const state = reactive<Omit<RouteContextProps, 'menuData'>>({
   collapsed: false, // default collapsed
   openKeys: [], // defualt openKeys

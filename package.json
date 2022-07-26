@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start":"npm run dev",
+    "start": "npm run dev",
     "dev": "vite --host",
     "dev:force": "vite --force",
     "build": "vue-tsc --noEmit && vite build",
@@ -15,7 +15,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@ant-design-vue/pro-layout": "^3.2.1",
+    "@ant-design-vue/pro-layout": "3.2.3",
     "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.0",
     "vue": "^3.2.33",
