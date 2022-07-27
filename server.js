@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'url';
 import express from 'express';
-
+import manifestJson from './dist/client/ssr-manifest.json' assert { type: 'json' };
 const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD;
 
 export async function createServer(
@@ -15,68 +15,17 @@ export async function createServer(
     const resolve = p => path.resolve(__dirname, p);
 
     const indexProd = isProd ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8') : '';
-    console.log('manifest before');
+    const manifestJson = isProd
+        ? fs.readFileSync(resolve('dist/client/ssr-manifest.json'), 'utf-8')
+        : {};
+
     // const manifest = isProd
     //     ? // @ts-ignore
     //       (await import('./dist/client/ssr-manifest.json')).default
     //     : {};
-    //ssr-manifest.json 读取失败
-    const manifest = {
-        'vite/modulepreload-polyfill': ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+shared@3.2.37/node_modules/@vue/shared/dist/shared.esm-bundler.js':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+reactivity@3.2.37/node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+runtime-core@3.2.37/node_modules/@vue/runtime-core/dist/runtime-core.esm-bundler.js':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+runtime-dom@3.2.37/node_modules/@vue/runtime-dom/dist/runtime-dom.esm-bundler.js':
-            ['/assets/vue.5532db34.svg'],
-        'src/style.css': ['/assets/vue.5532db34.svg'],
-        '../../vite.svg': ['/assets/vue.5532db34.svg'],
-        'src/assets/vue.svg': ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+devtools-api@6.2.1/node_modules/@vue/devtools-api/lib/esm/env.js':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+devtools-api@6.2.1/node_modules/@vue/devtools-api/lib/esm/const.js':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+devtools-api@6.2.1/node_modules/@vue/devtools-api/lib/esm/time.js':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+devtools-api@6.2.1/node_modules/@vue/devtools-api/lib/esm/proxy.js':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/@vue+devtools-api@6.2.1/node_modules/@vue/devtools-api/lib/esm/index.js':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/vue-router@4.1.2_vue@3.2.37/node_modules/vue-router/dist/vue-router.mjs':
-            ['/assets/vue.5532db34.svg'],
-        'node_modules/.pnpm/vuex@4.0.2_vue@3.2.37/node_modules/vuex/dist/vuex.esm-bundler.js': [
-            '/assets/vue.5532db34.svg'
-        ],
-        'src/App.vue?vue&type=style&index=0&scoped=04ab98e0&lang.css': ['/assets/vue.5532db34.svg'],
-        '\u0000plugin-vue:export-helper': ['/assets/vue.5532db34.svg'],
-        'src/App.vue': ['/assets/vue.5532db34.svg'],
-        'src/plugins/role.js': ['/assets/vue.5532db34.svg'],
-        'src/store/root.js': ['/assets/vue.5532db34.svg'],
-        'src/store/modules/hello.js': ['/assets/vue.5532db34.svg'],
-        'src/store/index.js': ['/assets/vue.5532db34.svg'],
-        '\u0000vite/preload-helper': ['/assets/vue.5532db34.svg'],
-        'src/routes/index.js': ['/assets/vue.5532db34.svg'],
-        'src/main.js': ['/assets/vue.5532db34.svg'],
-        'src/entry-client.js': ['/assets/vue.5532db34.svg'],
-        'index.html': ['/assets/vue.5532db34.svg'],
-        'HelloWorld.3b1a07c7.js': [],
-        'Transition.fdbe791a.js': ['\\assets\\Transition.bf74b3f3.css'],
-        'Composition.ea610cdd.js': [],
-        'src/components/HelloWorld.vue': ['/assets/HelloWorld.3b1a07c7.js'],
-        'src/components/Transition.vue?vue&type=style&index=0&lang.css': [
-            '/assets/Transition.fdbe791a.js',
-            '/assets/Transition.bf74b3f3.css'
-        ],
-        'src/components/Transition.vue': [
-            '/assets/Transition.fdbe791a.js',
-            '/assets/Transition.bf74b3f3.css'
-        ],
-        'src/components/common/useCounter.js': ['/assets/Composition.ea610cdd.js'],
-        'src/components/Composition.vue': ['/assets/Composition.ea610cdd.js']
-    };
-    console.log('manifest', manifest);
+    //ssr-manifest.json node 16暂不支持
+    const manifest = isProd ? manifestJson : {};
+
     const app = express();
 
     /**
