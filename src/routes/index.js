@@ -1,6 +1,5 @@
-import { createWebHistory } from 'vue-router';
-import { createWebHashHistory } from 'vue-router';
-import { createRouter } from 'vue-router';
+import { createWebHistory, createMemoryHistory } from 'vue-router';
+import { createRouter as _createRouter } from 'vue-router';
 const routes = [
     {
         path: '/',
@@ -15,8 +14,10 @@ const routes = [
         component: () => import('../components/Composition.vue')
     }
 ];
-const route = createRouter({
-    history: createWebHistory(),
-    routes
-});
-export default route;
+
+export function createRouter() {
+    return _createRouter({
+        history: import.meta.env.SSR ? createMemoryHistory() : createWebHistory(),
+        routes
+    });
+}

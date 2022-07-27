@@ -53,8 +53,8 @@ provide('updateLocation', updateLocation)
   <router-link to="/">hello</router-link><br />
   <router-link to="composition">composition</router-link><br />
   <router-link to="transition">transition</router-link>
-  <Button @click="handleRouter('/composition', { path: 'composition' })">router /composition</Button>
-  <Button @click="handleRouter('/transition', { path: 'transition' })">router /transition</Button>
+  <button @click="handleRouter('/composition', { path: 'composition' })">router /composition</button>
+  <button @click="handleRouter('/transition', { path: 'transition' })">router /transition</button>
 
   <router-view></router-view>
 </template>

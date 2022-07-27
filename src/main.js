@@ -1,12 +1,18 @@
-import { createApp } from 'vue';
+import { createSSRApp } from 'vue';
 
 import './style.css';
 import App from './App.vue';
 import Role from './plugins/role';
 import store from './store';
-import route from './routes';
-const app = createApp(App);
-app.use(Role);
-app.use(store);
-app.use(route);
-app.mount('#app');
+import { createRouter } from './routes';
+const createApp = () => {
+    const app = createSSRApp(App);
+    const router = createRouter();
+    app.use(Role);
+    app.use(store);
+    app.use(router);
+    // app.mount('#app');
+    return { app, router };
+};
+
+export { createApp };
