@@ -15,15 +15,13 @@ export async function createServer(
     const resolve = p => path.resolve(__dirname, p);
 
     const indexProd = isProd ? fs.readFileSync(resolve('dist/client/index.html'), 'utf-8') : '';
-    const manifestJson = isProd
-        ? fs.readFileSync(resolve('dist/client/ssr-manifest.json'), 'utf-8')
-        : {};
 
     // const manifest = isProd
     //     ? // @ts-ignore
     //       (await import('./dist/client/ssr-manifest.json')).default
     //     : {};
     //ssr-manifest.json node 16暂不支持
+    console.log('manifestJson', manifestJson);
     const manifest = isProd ? manifestJson : {};
 
     const app = express();
