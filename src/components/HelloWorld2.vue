@@ -12,7 +12,7 @@
     <button v-on:click="add({ num: 1000 })">click1</button>
     <button v-on:click="add({ num: 100 })">click2</button>
     <hr>
-    <el-skeleton />
+    <el-skeleton animated />
     <el-tabs v-model="activeKey" @tab-click="handleTabs">
       <el-tab-pane v-for="item in panes" :key="item.key" :label="item.name" :name="item.key">
         <div v-show="item.key === '1'">tab1</div>
@@ -67,6 +67,25 @@
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
+
+    <template>
+      <el-table :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+        style="width: 100%">
+        <el-table-column label="日期" prop="date">
+        </el-table-column>
+        <el-table-column label="姓名" prop="name">
+        </el-table-column>
+        <el-table-column align="right">
+          <template slot="header">
+            <el-input v-model="search" size="mini" placeholder="输入关键字搜索" />
+          </template>
+          <template slot-scope="scope">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </template>
   </div>
 </template>
 
@@ -114,7 +133,25 @@ export default {
         ]
       },
       activeKey: '2',
-      panes: [{ key: '1', name: 'tab1' }, { key: '2', name: 'tab2' }]
+      panes: [{ key: '1', name: 'tab1' }, { key: '2', name: 'tab2' }],
+      tableData: [{
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄'
+      }, {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄'
+      }, {
+        date: '2016-05-01',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1519 弄'
+      }, {
+        date: '2016-05-03',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1516 弄'
+      }],
+      search: ''
 
     }
   },
@@ -132,6 +169,9 @@ export default {
     next()
   },
   methods: {
+    handleDelete(index, row) {
+      console.log("current", index, 'row', row);
+    },
     handleTabs(tab, event) {
       console.log(tab, 'tab', event, 'event');
 
