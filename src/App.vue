@@ -37,6 +37,7 @@ provide('updateLocation', updateLocation)
 
 <template>
   <h1>无命名空间</h1>
+  <input v-focus:title="20" />
   <button @click="handleAdd(1)">{{ store.state.count }}</button>
   <button @click="handleAdd(1)">getters:{{ store.getters.newCount }}</button>
   <h1>有命名空间</h1>
