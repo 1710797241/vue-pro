@@ -1,7 +1,7 @@
 <script setup>
 
 import { onMounted, provide, ref } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { useRoute, useRouter, } from 'vue-router';
 import { useStore } from 'vuex';
 const location = ref({ lat: 0, lng: 0 });
 const updateLocation = (value) => {
@@ -33,6 +33,7 @@ const handleNameSpacedAdd = (val) => {
 }
 provide('location', location)
 provide('updateLocation', updateLocation)
+
 </script>
 
 <template>

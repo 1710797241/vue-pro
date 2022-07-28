@@ -25,7 +25,7 @@ export default {
   setup(props, context) {
 
     const { attrs, slots, emit, expose } = context
-    console.log('props', props);//响应式的props
+    console.log('props', props, 'context', context);//响应式的props
     // const { user } = toRefs(props)//解构props
     const user = toRef(props, { name: 123 })//user 可选时解构props
     let list = ref([1, 2, 3, 4, 5, 6])
