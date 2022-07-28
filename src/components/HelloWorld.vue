@@ -24,8 +24,8 @@ defineExpose({
   <h1>{{ msg }}</h1>
   <h2>{{ title }}</h2>
   <div class="card">
-    <button type="button" @click="handleClick">对外暴露自定义事件clickCustom:count is {{ count }}</button>
-    <button type="button" @click="handleChange">对外暴露自定义事件changeCustom: count is {{ count }}</button>
+    <button type="button" @click="handleClick">自定义事件clickCustom: count is {{ count }}</button>
+    <button type="button" @click="handleChange">自定义事件changeCustom: count is {{ count }}</button>
 
     <p>
       Edit
