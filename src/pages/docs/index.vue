@@ -9,6 +9,8 @@
 
 
     <div>pinia: {{ docStore.name }}</div>
+    <div @click="docStore.counter++">pinia-counter: {{ docStore.counter }}</div>
+    <div @click="docStore.add()">pinia-counter-actions:add(): {{ docStore.counter }}</div>
     <div>umiHello:{{ umiHello }}</div>
   </div>
 </template>

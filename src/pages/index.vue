@@ -5,7 +5,7 @@
       <img src="../assets/yay.jpg" width="388" />
     </p>
     <p>To get started, edit <code>pages/index.vue</code> and save to reload.</p>
-    <el-button type="primary" size="default" @click="handleCLick">primary</el-button>
+    <router-link to="/docs/12">doc</router-link>
 
   </div>
 </template>

@@ -8,6 +8,11 @@ export const useDocStore = defineStore('main', {
             name: 'qiye',
             isAdmin: true
         };
+    },
+    actions: {
+        add() {
+            this.counter++;
+        }
     }
 });
 
