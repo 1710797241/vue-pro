@@ -12,6 +12,7 @@
     <div @click="docStore.counter++">pinia-counter: {{ docStore.counter }}</div>
     <div @click="docStore.add()">pinia-counter-actions:add(): {{ docStore.counter }}</div>
     <div>umiHello:{{ umiHello }}</div>
+    <div>isAdmin:{{ isAdmin }}</div>
   </div>
 </template>
 <script setup>
@@ -19,10 +20,14 @@ import { useRoute } from 'umi'
 import { onMounted, computed, watch, ref, reactive, onUpdated, inject, toRef } from 'vue'
 import { useStore } from 'vuex'
 import { useDocStore, useAddressStore } from '../../stores/pinia/doc'
+import { storeToRefs } from 'pinia'
 const route = useRoute()
 const store = useStore();
 const newCount = computed(() => store.state.doc.count + 520)
 const docStore = useDocStore();
+const { isAdmin } = storeToRefs(docStore)//reactive
+// const { isAdmin } = docStore//no reactive
+
 const times = ref([
   {
     name: 'ref'
@@ -41,6 +46,7 @@ watch(times.value, (newVal, oldVal) => {
 const addressStore = useAddressStore()
 const add = () => {
   store.commit('doc/add', { count: 2 })
+  docStore.isAdmin = !docStore.isAdmin
 }
 const minus = () => {
   store.commit("doc/minus", { count: 2 })
