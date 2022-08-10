@@ -1,11 +1,10 @@
 <template>
   <h1>{{ msg }}</h1>
   <p class="import-meta-url">{{ url }}</p>
-  <Button>CommonButton</Button>
+
 </template>
 
 <script>
-import Button from '../components/button'
 
 export default {
   async setup() {
@@ -18,7 +17,7 @@ export default {
     }
   },
   components: {
-    Button
+
   }
 }
 </script>

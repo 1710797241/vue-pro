@@ -3,16 +3,16 @@
 </template>
 
 <script>
-import { createStore } from 'vuex'
-
+import { useStore } from 'vuex'
+import { onMounted } from 'vue'
 export default {
   async setup() {
-    const store = createStore({
-      state: {
-        foo: 'bar'
-      }
+
+    const allStore = useStore()
+    onMounted(() => {
+      console.log('allStore', allStore);
     })
-    return store.state
+    return allStore.state
   }
 }
 </script>
