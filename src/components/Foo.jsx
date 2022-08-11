@@ -18,8 +18,5 @@ export const Foo = defineComponent({
                 ))}
             </div>
         );
-    },
-    mounted() {
-        console.log('mounted');
     }
 });
