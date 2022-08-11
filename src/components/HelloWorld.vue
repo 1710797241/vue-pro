@@ -92,139 +92,10 @@
         <p>modal</p>
       </a-modal>
 
-      <template>
-        <a-form :form="form" @submit="handleSubmit">
-          <a-form-item v-bind="formItemLayout" label="E-mail">
-            <a-input v-decorator="[
-              'email',
-              {
-                rules: [
-                  {
-                    type: 'email',
-                    message: 'The input is not valid E-mail!',
-                  },
-                  {
-                    required: true,
-                    message: 'Please input your E-mail!',
-                  },
-                ],
-              },
-            ]" />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="Password" has-feedback>
-            <a-input v-decorator="[
-              'password',
-              {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input your password!',
-                  },
-                  {
-                    validator: validateToNextPassword,
-                  },
-                ],
-              },
-            ]" type="password" />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="Confirm Password" has-feedback>
-            <a-input v-decorator="[
-              'confirm',
-              {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please confirm your password!',
-                  },
-                  {
-                    validator: compareToFirstPassword,
-                  },
-                ],
-              },
-            ]" type="password" @blur="handleConfirmBlur" />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout">
-            <span slot="label">
-              Nickname&nbsp;
-              <a-tooltip title="What do you want others to call you?">
-                <a-icon type="question-circle-o" />
-              </a-tooltip>
-            </span>
-            <a-input v-decorator="[
-              'nickname',
-              {
-                rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
-              },
-            ]" />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="Habitual Residence">
-            <a-cascader v-decorator="[
-              'residence',
-              {
-                initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-                rules: [
-                  { type: 'array', required: true, message: 'Please select your habitual residence!' },
-                ],
-              },
-            ]" :options="residences" />
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="Phone Number">
-            <a-input v-decorator="[
-              'phone',
-              {
-                rules: [{ required: true, message: 'Please input your phone number!' }],
-              },
-            ]" style="width: 100%">
-              <a-select slot="addonBefore" v-decorator="['prefix', { initialValue: '86' }]" style="width: 70px">
-                <a-select-option value="86">
-                  +86
-                </a-select-option>
-                <a-select-option value="87">
-                  +87
-                </a-select-option>
-              </a-select>
-            </a-input>
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="Website">
-            <a-auto-complete
-              v-decorator="['website', { rules: [{ required: true, message: 'Please input website!' }] }]"
-              placeholder="website" @change="handleWebsiteChange">
-              <template slot="dataSource">
-                <a-select-option v-for="website in autoCompleteResult" :key="website">
-                  {{ website }}
-                </a-select-option>
-              </template>
-              <a-input />
-            </a-auto-complete>
-          </a-form-item>
-          <a-form-item v-bind="formItemLayout" label="Captcha" extra="We must make sure that your are a human.">
-            <a-row :gutter="8">
-              <a-col :span="12">
-                <a-input v-decorator="[
-                  'captcha',
-                  { rules: [{ required: true, message: 'Please input the captcha you got!' }] },
-                ]" />
-              </a-col>
-              <a-col :span="12">
-                <a-button>Get captcha</a-button>
-              </a-col>
-            </a-row>
-          </a-form-item>
-          <a-form-item v-bind="tailFormItemLayout">
-            <a-checkbox v-decorator="['agreement', { valuePropName: 'checked' }]">
-              I have read the
-              <a href="">
-                agreement
-              </a>
-            </a-checkbox>
-          </a-form-item>
-          <a-form-item v-bind="tailFormItemLayout">
-            <a-button type="primary" html-type="submit">
-              Register
-            </a-button>
-          </a-form-item>
-        </a-form>
-      </template>
+      <AntFormVue />
+      <a-skeleton :loading="true" avatar active>
+
+      </a-skeleton>
     </div>
   </div>
 </template>
@@ -239,6 +110,7 @@ import CustomInput from './CustomInput.vue';
 import CustomTransition from './CustomTransition.vue';
 import permission from './../mixins/permission'
 // import CustomCard from './CustomCard.vue';
+import AntFormVue from './AntForm.vue';
 
 const columns = [
   {
@@ -270,69 +142,14 @@ const columns = [
   }
 ];
 
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer']
-  },
-  {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser']
-  },
-  {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher']
-  }
-];
+
 // 全局组件
 Vue.component('qi-ye', {
   props: ['name'],
   template: `<div>{{name}}</div>`
 });
 
-const residences = [
-  {
-    value: 'zhejiang',
-    label: 'Zhejiang',
-    children: [
-      {
-        value: 'hangzhou',
-        label: 'Hangzhou',
-        children: [
-          {
-            value: 'xihu',
-            label: 'West Lake',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    value: 'jiangsu',
-    label: 'Jiangsu',
-    children: [
-      {
-        value: 'nanjing',
-        label: 'Nanjing',
-        children: [
-          {
-            value: 'zhonghuamen',
-            label: 'Zhong Hua Men',
-          },
-        ],
-      },
-    ],
-  },
-];
+
 export default {
   name: 'HelloWorld',
   props: {
@@ -361,7 +178,8 @@ export default {
     CustomButton,
     CustomInput,
     CustomCard: () => import('./CustomCard.vue'),
-    CustomTransition
+    CustomTransition,
+    AntFormVue
 
   },
   computed: {
@@ -370,33 +188,9 @@ export default {
   },
   data() {
     return {
-      confirmDirty: false,
-      residences,
-      autoCompleteResult: [],
-      formItemLayout: {
-        labelCol: {
-          xs: { span: 24 },
-          sm: { span: 8 },
-        },
-        wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 16 },
-        },
-      },
-      tailFormItemLayout: {
-        wrapperCol: {
-          xs: {
-            span: 24,
-            offset: 0,
-          },
-          sm: {
-            span: 16,
-            offset: 8,
-          },
-        },
-      },
+
       value1: moment(),
-      data,
+      data: [],
       columns,
       visible: false,
       keyword: '',
@@ -412,9 +206,7 @@ export default {
       filter: 'abcfilter'
     };
   },
-  beforeCreate() {
-    this.form = this.$form.createForm(this, { name: 'register' });
-  },
+
   mounted() {
     this.$bus.$on("addMoney", (val) => {
       console.log('MessageCenter', val);
@@ -423,6 +215,9 @@ export default {
     console.log('did', this, 'root', this.$root, 'parent', this.$parent);
     console.log('data mixins', this.mixins);
 
+  },
+  beforeCreate() {
+    this.form = this.$form.createForm(this, { name: 'register' });
   },
   methods: {
 
