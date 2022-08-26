@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+
 import './App.css';
 import 'antd/dist/antd.css';
 import { StepForwardOutlined } from '@ant-design/icons';
