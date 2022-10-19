@@ -15,19 +15,24 @@
     <button @click="handleAdd">async add</button>
     <el-button type='primary'>element-ui</el-button>
     <a-button></a-button>
-    <a-spin />
+
     <router-view></router-view>
   </div>
 </template>
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import { mapState, mapActions, mapGetters } from 'vuex'
+import { AxiosPostJson } from "./utils/request";
+
 export default {
   components: {
     HelloWorld
   },
   mounted() {
     console.log('this', this.$store.state);
+    AxiosPostJson('/api/v1/rocket/thesaurus/add', { name: 123, list: [1, 2, 3, 4, 5] },).then(res => {
+
+    })
   },
   data() {
     return {
