@@ -22,7 +22,7 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import { mapState, mapActions, mapGetters } from 'vuex'
-import { AxiosPostJson } from "./utils/request";
+import { commonUpload } from "./services/upload";
 
 export default {
   components: {
@@ -30,7 +30,9 @@ export default {
   },
   mounted() {
     console.log('this', this.$store.state);
-    AxiosPostJson('/api/v1/rocket/thesaurus/add', { name: 123, list: [1, 2, 3, 4, 5] },).then(res => {
+    let formdata = new FormData()
+    formdata.append("file", 'file123')
+    commonUpload(formdata).then(res => {
 
     })
   },
