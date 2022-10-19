@@ -9,7 +9,7 @@ const AxiosRequest = Axios.create({
 
     // `withCredentials` indicates whether or not cross-site Access-Control requests
     // should be made using credentials
-    withCredentials: false, // default
+    withCredentials: true, // default
     headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' }
     // `paramsSerializer` is an optional function in charge of serializing `params`
     // (e.g. https://www.npmjs.com/package/qs, http://api.jquery.com/jquery.param/)
@@ -31,7 +31,10 @@ AxiosRequest.interceptors.request.use(
 AxiosRequest.interceptors.response.use(
     response => {
         console.log('AxiosRequest.interceptors.response', response);
-        Message.error(response.data.message);
+        if (response.data.code !== 200) {
+            Message.error(response.data.message);
+        }
+        return response.data;
     },
     error => {
         return Promise.reject(error);

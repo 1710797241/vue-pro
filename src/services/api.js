@@ -1,3 +1,3 @@
 export default {
-    Upload: 'upload'
+    Upload: '/admin-api/infra/file/upload'
 };

@@ -15,7 +15,21 @@
     <button @click="handleAdd">async add</button>
     <el-button type='primary'>element-ui</el-button>
     <a-button></a-button>
-
+    <el-upload
+     action="/admin-api/infra/file/upload"
+      ref="upload"
+     :http-request="customRequest"
+      :auto-upload="true"
+      multiple
+      :file-list="filelist"
+      :limit="5"
+       list-type="picture"
+    >
+      <el-button slot="trigger" size="small" type="primary">select file</el-button>
+      <el-button style="margin-left: 10px;" size="small" type="success" @click="">upload to server</el-button>
+      <div slot="tip" class="el-upload__tip">jpg/png files with a size less than 500kb</div>
+    </el-upload>
+    
     <router-view></router-view>
   </div>
 </template>
@@ -30,15 +44,11 @@ export default {
   },
   mounted() {
     console.log('this', this.$store.state);
-    let formdata = new FormData()
-    formdata.append("file", 'file123')
-    commonUpload(formdata).then(res => {
-
-    })
+   
   },
   data() {
     return {
-
+filelist:[]
     }
   },
   computed: {
@@ -62,6 +72,16 @@ export default {
       this.$store.commit("minus", {
         count: 1
       })
+    },
+    customRequest({file}){
+    console.log(file)
+    let formData = new FormData()
+    formData.append("file",file)
+    commonUpload(formData).then(res=>{
+      console.log('res',res);
+      let currentFile ={name:'demo',url:res.data}
+      this.filelist = [...this.filelist,currentFile]
+    })
     }
   }
 }
