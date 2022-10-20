@@ -40,30 +40,32 @@ AxiosRequest.interceptors.response.use(
         return Promise.reject(error);
     }
 );
-const AxiosPost = (url, data, headers = {}) => {
-    return AxiosRequest.post(url, data, { headers });
+const AxiosPost = (url, data, options = {}) => {
+    return AxiosRequest.post(url, data, { ...options });
 };
 const AxiosPostJson = (
     url,
     data,
-    headers = { 'Content-Type': 'application/json;charset=UTF-8' }
+    options = { headers: { 'Content-Type': 'application/json;charset=UTF-8' } }
 ) => {
-    return AxiosRequest.post(url, data, { headers });
+    console.log('data', data);
+    return AxiosRequest.post(url, data, { ...options });
 };
-const AxiosPut = (url, data, headers = {}) => {
-    return AxiosRequest.post(url, data, { headers });
+const AxiosPut = (url, data, options = {}) => {
+    return AxiosRequest.post(url, data, { ...options });
 };
 const AxiosPutJson = (
     url,
     data,
-    headers = { 'Content-Type': 'application/json;charset=UTF-8' }
+    options = { headers: { 'Content-Type': 'application/json;charset=UTF-8' } }
 ) => {
-    return AxiosRequest.put(url, data, { headers });
+    return AxiosRequest.put(url, data, { ...options });
 };
-const AxiosGet = (url, params, headers = {}) => {
-    return AxiosRequest.get(url, { params }, { headers });
+const AxiosGet = (url, params, options = {}) => {
+    console.log(options, 'options');
+    return AxiosRequest.get(url, { params, ...options });
 };
-const AxiosDelete = (url, data, headers = {}) => {
-    return AxiosRequest.delete(url, data, { headers });
+const AxiosDelete = (url, params, options = {}) => {
+    return AxiosRequest.delete(url, { params, ...options });
 };
 export { AxiosPost, AxiosPostJson, AxiosPut, AxiosPutJson, AxiosGet, AxiosDelete };
