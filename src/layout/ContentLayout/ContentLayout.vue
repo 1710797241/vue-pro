@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       routes: routes,
-      openeds: [''],
+      openeds: ['/hello'],
       active: '/'
     }
   },
