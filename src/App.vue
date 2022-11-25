@@ -57,7 +57,7 @@ provide('updateLocation', updateLocation)
   <router-link to="transition">transition</router-link>
   <Button @click="handleRouter('/composition', { path: 'composition' })">router /composition</Button>
   <Button @click="handleRouter('/transition', { path: 'transition' })">router /transition</Button>
-
+  <el-button type='primary'>click element</el-button>
   <router-view></router-view>
 </template>
 
