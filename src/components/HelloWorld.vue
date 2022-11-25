@@ -7,6 +7,7 @@
     <button @click="add({ count: 1 })">add</button>
     <button @click="minus({ count: 1 })">minus</button>
     <button @click="handleAdd">add async</button>
+    <router-view></router-view>
   </div>
 
 </template>

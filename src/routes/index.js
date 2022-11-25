@@ -2,13 +2,27 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import HelloWorld from '../components/HelloWorld.vue';
 Vue.use(VueRouter);
+export const routes = [
+    {
+        path: '/',
+        component: HelloWorld,
+        meta: { title: '首页' }
+    },
+    {
+        path: '/hello',
+        component: HelloWorld,
+        meta: { title: 'hello' },
+        children: [
+            {
+                path: '/hello/view',
+                component: HelloWorld,
+                meta: { title: 'view' }
+            }
+        ]
+    }
+];
 const router = new VueRouter({
-    routes: [
-        {
-            path: '/hello',
-            component: HelloWorld
-        }
-    ]
+    routes
 });
 
 export default router;
