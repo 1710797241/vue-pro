@@ -6,12 +6,12 @@ export const routes = [
     {
         path: '/',
         component: HelloWorld,
-        meta: { title: '首页' }
+        meta: { title: '首页', icon: 'el-icon-s-home' }
     },
     {
         path: '/hello',
         component: HelloWorld,
-        meta: { title: 'hello' },
+        meta: { title: 'hello', icon: 'el-icon-message' },
         children: [
             {
                 path: '/hello/view',

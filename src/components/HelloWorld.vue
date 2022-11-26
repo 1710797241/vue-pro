@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height:1000px;background-color:red">
     <h1>vuex 命名空间</h1>
     <h2> 计数</h2>
     <div>{{ count }}</div>
