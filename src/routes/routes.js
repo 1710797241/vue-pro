@@ -5,7 +5,8 @@ export default [
     {
         path: '/',
         component: HelloWorld,
-        meta: { title: '首页', icon: 'el-icon-s-home', access: 'canAdmin' }
+
+        meta: { title: '首页', icon: 'el-icon-s-home', access: 'canCommon' }
     },
     {
         path: '/hello',
@@ -15,7 +16,36 @@ export default [
             {
                 path: '/hello/view',
                 component: HelloWorld,
-                meta: { title: 'view', access: 'canAdmin' }
+                meta: { title: 'view', access: 'canAdmin' },
+                children: [
+                    {
+                        path: '/hello/view/ch',
+                        component: HelloWorld,
+                        meta: { title: 'view', access: 'canAdmin' }
+                    },
+                    {
+                        path: '/hello/view/ch1',
+                        component: HelloWorld,
+                        meta: { title: 'view2' }
+                    }
+                ]
+            },
+            {
+                path: '/hello/view2',
+                component: HelloWorld,
+                meta: { title: 'view2' },
+                children: [
+                    {
+                        path: '/hello/view2/ch',
+                        component: HelloWorld,
+                        meta: { title: 'view', access: 'canAdmin' }
+                    },
+                    {
+                        path: '/hello/view2/ch1',
+                        component: HelloWorld,
+                        meta: { title: 'view2' }
+                    }
+                ]
             }
         ]
     },

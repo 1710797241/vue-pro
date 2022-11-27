@@ -20,11 +20,11 @@
                 <span slot="title">{{ item.meta.title
                 }}</span>
               </template>
-
-              <el-menu-item v-for="(item2, index2) in item.children" v-bind:key="index2" :index="item2.path">
-                {{ item2.meta.title }}
-              </el-menu-item>
-
+              <template v-for="(item2, index2) in item.children">
+                <el-menu-item v-if="!item2.meta.hideInMenu" v-bind:key="index2" :index="item2.path">
+                  {{ item2.meta.title }}
+                </el-menu-item>
+              </template>
 
             </el-submenu>
           </template>
@@ -62,10 +62,11 @@
 </template>
 <script>
 import routes from '../../routes/routes'
+import { filterRoutes } from '../../utils/utils'
 export default {
   data() {
     return {
-      routes: routes,
+      routes: [],
       openeds: ['/'],
       active: '/',
       isFlod: false,
@@ -82,6 +83,7 @@ export default {
     // }
     this.handleResize()
     this.handleAddSizeListener()
+    this.handleInitRoutes()
   },
   unmounted() {
     this.handleRemoveSizeListener()
@@ -126,6 +128,15 @@ export default {
         this.isFlod = false
         this.asideWidth = this.asideMaxWidth
 
+      }
+    },
+    handleInitRoutes() {
+
+      try {
+        let originRoutes = filterRoutes(routes)
+        this.routes = originRoutes
+      } catch (error) {
+        console.log('error', error);
       }
     }
   }

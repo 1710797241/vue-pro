@@ -2,20 +2,28 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
 import access from '../access';
-
 Vue.use(VueRouter);
-
 const router = new VueRouter({
     routes
 });
 router.beforeEach((to, from, next) => {
     if (to.meta.access) {
-        const canAccess = access({ user: 'user' })[to.meta.access](to);
-        console.log('beforeEach', canAccess, 'canAccess');
-        if (canAccess) {
-            next();
+        const canAccess = access({ user: 'user' })[to.meta.access];
+        console.log('canAccess', canAccess);
+        if (typeof canAccess == 'boolean') {
+            if (canAccess) {
+                next();
+            } else {
+                next('/403');
+            }
+        } else if (typeof canAccess == 'function') {
+            if (canAccess(to)) {
+                next();
+            } else {
+                next('/403');
+            }
         } else {
-            next('/403');
+            next();
         }
     } else {
         next();

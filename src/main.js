@@ -8,8 +8,10 @@ import 'element-ui/lib/theme-chalk/index.css';
 import AButton from './components/Button';
 import './components/Button/index.less';
 import './global.less';
+
 Vue.use(ElementUI);
 Vue.use(AButton);
+
 new Vue({
     render: h => h(App),
     router,

@@ -4,7 +4,7 @@
   <ContentLayout />
 </template>
 <script>
-import ContentLayout from './layout/ContentLayout/ContentLayout.vue';
+import ContentLayout from './layout/ContentLayout/ContentLayout.jsx';
 import { mapState, mapActions, mapGetters } from 'vuex'
 import { commonUpload, commonDownload } from "./services/upload";
 import { handleDownloadFile } from "./utils/download";
