@@ -1,28 +1,30 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import HelloWorld from '../components/HelloWorld.vue';
+import routes from './routes';
+import access from '../access';
+
 Vue.use(VueRouter);
-export const routes = [
-    {
-        path: '/',
-        component: HelloWorld,
-        meta: { title: '首页', icon: 'el-icon-s-home' }
-    },
-    {
-        path: '/hello',
-        component: HelloWorld,
-        meta: { title: 'hello', icon: 'el-icon-message' },
-        children: [
-            {
-                path: '/hello/view',
-                component: HelloWorld,
-                meta: { title: 'view' }
-            }
-        ]
-    }
-];
+
 const router = new VueRouter({
     routes
 });
+router.beforeEach((to, from, next) => {
+    if (to.meta.access) {
+        const canAccess = access({ user: 'user' })[to.meta.access](to);
+        console.log('beforeEach', canAccess, 'canAccess');
+        if (canAccess) {
+            next();
+        } else {
+            next('/403');
+        }
+    } else {
+        next();
+    }
 
+    // if (to.path !== '/403') {
+    //     next({ path: '/403' });
+    // } else {
+    //     next();
+    // }
+});
 export default router;

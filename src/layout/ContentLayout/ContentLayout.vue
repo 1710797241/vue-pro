@@ -6,14 +6,14 @@
         :default-openeds="openeds" :collapse="isFlod" :unique-opened="false" :default-active="active"
         background-color="#001529" text-color="#fff" active-text-color="#ffd04b">
         <template v-for="(item, index) in routes">
-          <el-menu-item v-bind:key="index" v-if="!item.children" :index="item.path">
+          <el-menu-item v-bind:key="index" v-if="!item.children && !item.meta.hideInMenu" :index="item.path">
 
             <i :class="item.meta.icon"></i>
             <span slot="title">{{ item.meta.title }}</span>
 
           </el-menu-item>
 
-          <template v-if="item.children">
+          <template v-if="item.children && !item.meta.hideInMenu">
             <el-submenu v-bind:key="index" :index="item.path">
               <template slot="title">
                 <i :class="item.meta.icon"></i>
@@ -61,7 +61,7 @@
   </el-container>
 </template>
 <script>
-import { routes } from '../../routes/index'
+import routes from '../../routes/routes'
 export default {
   data() {
     return {
@@ -77,9 +77,9 @@ export default {
   },
   mounted() {
     console.log('init layout', this.$route);
-    if (this.$route.path !== this.active) {
-      this.$router.push(this.active)
-    }
+    // if (this.$route.path !== this.active) {
+    //   this.$router.push(this.active)
+    // }
     this.handleResize()
     this.handleAddSizeListener()
   },
