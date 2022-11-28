@@ -152,6 +152,69 @@ export default {
   right: 5px;
 }
 
+.el-header {
+  text-align: right;
+  font-size: 12px;
+  background-color: #001529;
+  color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+.el-aside-wrapper {
+  flex: 0 0 220px;
+}
+
+.el-aside {
+  background-color: #001529;
+
+  transition: width 0.5s;
+  overflow-x: hidden;
+  position: fixed;
+  height: 100%;
+  top: 0;
+}
+
+.el-menu[role='menubar'] {
+  border-right: 0;
+  height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.el-menu[role='menubar']::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.el-menu[role='menubar']::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 5px rgb(255 255 255 / 5%);
+  box-shadow: inset 0 0 5px rgb(255 255 255 / 5%);
+}
+
+.el-menu[role='menubar']::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 5px rgb(37 37 37 / 5%);
+  box-shadow: inset 0 0 5px rgb(37 37 37 / 5%);
+}
+
+.custom-el-dropdown-menu_item {
+  background-color: #001529;
+  color: #fff;
+}
+
+.el-card__body,
+.el-main {
+  padding: 16px;
+}
+
 .aside-logo {
   display: inline-block;
   width: 100%;
@@ -169,12 +232,10 @@ export default {
 
 .header-left {
   max-width: 50%;
-
 }
 
 .header-right {
   display: flex;
   align-items: center;
-
 }
 </style>

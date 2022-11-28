@@ -15,6 +15,28 @@ const ProLayout = {
             asideMaxWidth: '220px'
         };
     },
+    props: {
+        showFooter: {
+            type: Boolean,
+            default: false
+        },
+        footerClass: {
+            type: String,
+            default: ''
+        },
+        backgroundColor: {
+            type: String,
+            default: '#001529'
+        },
+        textColor: {
+            type: String,
+            default: '#fff'
+        },
+        activeTextColor: {
+            type: String,
+            default: '#ffd04b'
+        }
+    },
     mounted() {
         console.log('init layout', this.$route);
         // if (this.$route.path !== this.active) {
@@ -72,53 +94,18 @@ const ProLayout = {
                 console.log('error', error);
             }
         },
-        renderMenuItems() {
+        renderMenuItems(list) {
             let divList = [];
 
-            //   <template v-for="(item, index) in routes">
-            //   <el-menu-item v-bind:key="index" v-if="!item.children && !item.meta.hideInMenu" :index="item.path">
-
-            //     <i :class="item.meta.icon"></i>
-            //     <span slot="title">{{ item.meta.title }}</span>
-
-            //   </el-menu-item>
-
-            //   <template v-if="item.children && !item.meta.hideInMenu">
-            //     <el-submenu v-bind:key="index" :index="item.path">
-            //       <template slot="title">
-            //         <i :class="item.meta.icon"></i>
-            //         <span slot="title">{{ item.meta.title
-            //         }}</span>
-            //       </template>
-            //       <template v-for="(item2, index2) in item.children">
-            //         <el-menu-item v-if="!item2.meta.hideInMenu" v-bind:key="index2" :index="item2.path">
-            //           {{ item2.meta.title }}
-            //         </el-menu-item>
-            //       </template>
-
-            //     </el-submenu>
-            //   </template>
-            // </template>
-            this.routes.map((item, index) => {
-                let childrenDivList = [];
+            list.map((item, index) => {
                 if (item.children && !item.meta.hideInMenu) {
-                    item.children.map((item2, index2) => {
-                        if (item2.meta.hideInMenu) {
-                        } else {
-                            childrenDivList.push(
-                                <el-menu-item key={index2} index={item2.path}>
-                                    {item2.meta.title}
-                                </el-menu-item>
-                            );
-                        }
-                    });
                     divList.push(
                         <el-submenu key={index} index={item.path}>
                             <template slot="title">
                                 <i class={item.meta.icon}></i>
                                 <span slot="title">{item.meta.title}</span>
                             </template>
-                            {childrenDivList}
+                            {this.renderMenuItems(item.children)}
                         </el-submenu>
                     );
                 }
@@ -135,32 +122,29 @@ const ProLayout = {
         }
     },
     render() {
-        let sel_props = {
-            on: {
-                open: this.handleOpen,
-                select: this.handleSelect
-            }
-        };
+        const { $slots, $attrs, footerClass, activeTextColor, textColor, backgroundColor } = this;
+        console.log('$slots', $slots, '$attrs', $attrs, 'footerClass', footerClass);
+
         return (
-            <div>
+            <div class={'custom-pro-layout'}>
                 <el-container style="height 100%;">
+                    <div style={{ flexBasis: this.asideWidth }} class="el-aside-wrapper"></div>
                     <el-aside width={this.asideWidth}>
                         <span class="aside-logo"></span>
                         <el-menu
-                            onOpen={e => {
-                                console.log('e');
-                            }}
+                            onOpen={this.handleOpen}
+                            onSelect={this.handleSelect}
                             collapse-transition={false}
                             default-openeds={this.openeds}
                             collapse={this.isFlod}
                             router={true}
                             unique-opened={false}
                             default-active={this.active}
-                            background-color="#001529"
-                            text-color="#fff"
-                            active-text-color="#ffd04b"
+                            background-color={backgroundColor}
+                            text-color={textColor}
+                            active-text-color={activeTextColor}
                         >
-                            {this.renderMenuItems()}
+                            {this.renderMenuItems(this.routes)}
                         </el-menu>
 
                         {this.isFlod ? (
@@ -175,30 +159,16 @@ const ProLayout = {
                     </el-aside>
 
                     <el-container>
-                        <el-header>
-                            <div class="header-container">
-                                <div class="header-left"></div>
-                                <div class="header-right">
-                                    <el-dropdown class="custom-el-dropdown-menu_item">
-                                        <i
-                                            class="el-icon-setting"
-                                            style="margin-right 0px;color#fff;"
-                                        >
-                                            <span style="margin-left5px">王小虎</span>
-                                        </i>
-                                        <el-dropdown-menu slot="dropdown">
-                                            <el-dropdown-item>查看</el-dropdown-item>
-                                            <el-dropdown-item>新增</el-dropdown-item>
-                                            <el-dropdown-item>删除</el-dropdown-item>
-                                        </el-dropdown-menu>
-                                    </el-dropdown>
-                                </div>
-                            </div>
-                        </el-header>
-
+                        <header style={{ height: '60px', backgronudColor: 'transparent' }}></header>
+                        <el-header>{$slots.header}</el-header>
                         <el-main>
-                            <router-view></router-view>
+                            <div class="custom-el-main-content">
+                                <router-view></router-view>
+                            </div>
                         </el-main>
+                        {this.showFooter ? (
+                            <div class={['custom-footer', footerClass]}>{$slots.footer}</div>
+                        ) : null}
                     </el-container>
                 </el-container>
             </div>

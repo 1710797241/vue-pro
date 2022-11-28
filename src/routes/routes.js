@@ -1,4 +1,7 @@
+import ChildrenLayout from '../layout/ChildrenLayout';
 import HelloWorld from '../components/HelloWorld.vue';
+import HelloWorld2 from '../components/HelloWorld2.vue';
+
 import Vue403 from '../pages/403.vue';
 import Vue404 from '../pages/404.vue';
 export default [
@@ -10,42 +13,18 @@ export default [
     },
     {
         path: '/hello',
-        component: HelloWorld,
         meta: { title: 'hello', icon: 'el-icon-message', access: 'canAdmin' },
+        component: ChildrenLayout,
         children: [
             {
                 path: '/hello/view',
                 component: HelloWorld,
-                meta: { title: 'view', access: 'canAdmin' },
-                children: [
-                    {
-                        path: '/hello/view/ch',
-                        component: HelloWorld,
-                        meta: { title: 'view', access: 'canAdmin' }
-                    },
-                    {
-                        path: '/hello/view/ch1',
-                        component: HelloWorld,
-                        meta: { title: 'view2' }
-                    }
-                ]
+                meta: { title: 'view', access: 'canAdmin' }
             },
             {
                 path: '/hello/view2',
-                component: HelloWorld,
-                meta: { title: 'view2' },
-                children: [
-                    {
-                        path: '/hello/view2/ch',
-                        component: HelloWorld,
-                        meta: { title: 'view', access: 'canAdmin' }
-                    },
-                    {
-                        path: '/hello/view2/ch1',
-                        component: HelloWorld,
-                        meta: { title: 'view2' }
-                    }
-                ]
+                component: HelloWorld2,
+                meta: { title: 'view2' }
             }
         ]
     },

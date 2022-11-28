@@ -28,6 +28,7 @@ router.beforeEach((to, from, next) => {
     } else {
         next();
     }
+    window.scroll(0, 0);
 
     // if (to.path !== '/403') {
     //     next({ path: '/403' });

@@ -1,7 +1,6 @@
 import access from '../access';
 export const checkAccess = (accessType, to) => {
     const canAccess = access({ user: 'user' })[accessType];
-    console.log('canAccess', canAccess);
 
     if (typeof canAccess == 'boolean') {
         if (canAccess) {

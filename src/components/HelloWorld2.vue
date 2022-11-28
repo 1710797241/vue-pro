@@ -1,12 +1,6 @@
 <template>
-  <div style="height:1000px;background-color:red">
-    <h1>vuex 命名空间</h1>
-    <h2> 计数</h2>
-    <div>{{ count }}</div>
-    <div>newCount:{{ newCount }}</div>
-    <button @click="add({ count: 1 })">add</button>
-    <button @click="minus({ count: 1 })">minus</button>
-    <button @click="handleAdd">add async</button>
+  <div style="height:1000px;">
+
     <router-view></router-view>
   </div>
 
@@ -24,7 +18,6 @@ export default {
     ...mapActions("userStore", ['handleAdd'])
   },
   mounted() {
-
   }
 }
 </script>

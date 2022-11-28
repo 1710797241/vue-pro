@@ -1,7 +1,11 @@
 
 
 <template>
-  <ContentLayout />
+  <ContentLayout textColor="#fff" activeTextColor='#1890ff' footerClass="footerClass" :showFooter="true">
+    <template #header>123456789</template>
+    <template #footer>123456789</template>
+
+  </ContentLayout>
 </template>
 <script>
 import ContentLayout from './layout/ContentLayout/ContentLayout.jsx';
@@ -19,6 +23,7 @@ export default {
   },
   data() {
     return {
+
       filelist: []
     }
   },
@@ -65,3 +70,8 @@ export default {
   }
 }
 </script>
+<style >
+.footerClass {
+  background-color: red;
+}
+</style>
