@@ -9,7 +9,6 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
     if (to.meta.access) {
         const canAccess = access({ user: 'user' })[to.meta.access];
-        console.log('canAccess', canAccess);
         if (typeof canAccess == 'boolean') {
             if (canAccess) {
                 next();

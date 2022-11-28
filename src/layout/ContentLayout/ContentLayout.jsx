@@ -38,10 +38,6 @@ const ProLayout = {
         }
     },
     mounted() {
-        console.log('init layout', this.$route);
-        // if (this.$route.path !== this.active) {
-        //   this.$router.push(this.active)
-        // }
         this.handleResize();
         this.handleAddSizeListener();
         this.handleInitRoutes();
@@ -52,12 +48,9 @@ const ProLayout = {
     methods: {
         handleSelect(index, indexPath) {
             this.active = index;
-
-            console.log('select', index, 'path', indexPath);
         },
         handleOpen(index, indexPath) {
             this.openeds = [index];
-            console.log('handleOpen', index, 'path', indexPath);
         },
         handleFold() {
             if (!this.isFlod) {
@@ -69,7 +62,6 @@ const ProLayout = {
             }
         },
         handleAddSizeListener() {
-            console.log('resize');
             window.addEventListener('resize', this.handleResize);
         },
         handleRemoveSizeListener() {
@@ -77,7 +69,6 @@ const ProLayout = {
         },
         handleResize() {
             const width = document.documentElement.clientWidth;
-            console.log('width', width);
             if (width < this.minWidth) {
                 this.isFlod = true;
                 this.asideWidth = this.asideMinWidth;
@@ -123,7 +114,7 @@ const ProLayout = {
     },
     render() {
         const { $slots, $attrs, footerClass, activeTextColor, textColor, backgroundColor } = this;
-        console.log('$slots', $slots, '$attrs', $attrs, 'footerClass', footerClass);
+        // console.log('$slots', $slots, '$attrs', $attrs, 'footerClass', footerClass);
 
         return (
             <div class={'custom-pro-layout'}>

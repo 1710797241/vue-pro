@@ -18,7 +18,6 @@ export default {
     ContentLayout
   },
   mounted() {
-    console.log('this', this.$store.state);
 
   },
   data() {

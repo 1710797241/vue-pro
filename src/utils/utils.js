@@ -33,7 +33,6 @@ export const filterRoutes = routes => {
             });
         }
     });
-    console.log('isShowMenu new ', originRoutes);
     originRoutes.map(item => {
         if (item.children && item.children.length == item.meta.hideInChildrenMenucount) {
             item.meta.hideInMenu = true;
