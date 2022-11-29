@@ -1,41 +1,41 @@
-const ChildrenLayout = '../layout/ChildrenLayout';
-const HelloWorld = '../components/HelloWorld.vue';
-const HelloWorld2 = '../components/HelloWorld2.vue';
-
+const modules = import.meta.glob('../pages/*.vue');
 const Vue403 = '../pages/403.vue';
 const Vue404 = '../pages/404.vue';
+const HelloWorld = '../pages/HelloWorld.vue';
+const HelloWorld2 = '../pages/HelloWorld2.vue';
+import ChildrenLayout from '../layout/ChildrenLayout';
 export default [
     {
         path: '/',
-        component: () => import(HelloWorld),
+        component: modules[HelloWorld],
 
         meta: { title: '首页', icon: 'el-icon-s-home', access: 'canCommon' }
     },
     {
         path: '/hello',
         meta: { title: 'hello', icon: 'el-icon-message', access: 'canAdmin' },
-        component: () => import(ChildrenLayout),
+        component: ChildrenLayout,
         children: [
             {
                 path: '/hello/view',
-                component: () => import(HelloWorld),
+                component: modules[HelloWorld],
                 meta: { title: 'view', access: 'canAdmin' }
             },
             {
                 path: '/hello/view2',
-                component: () => import(HelloWorld2),
+                component: modules[HelloWorld2],
                 meta: { title: 'view2' }
             }
         ]
     },
     {
         path: '/403',
-        component: () => import(Vue403),
+        component: modules[Vue403],
         meta: { title: '403', hideInMenu: true }
     },
     {
         path: '*',
-        component: () => import(Vue404),
+        component: modules[Vue404],
         meta: { title: '404', hideInMenu: true }
     }
 ];
