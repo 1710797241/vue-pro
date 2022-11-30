@@ -1,30 +1,34 @@
-const modules = import.meta.glob('../pages/*.vue');
+const modulesVue = import.meta.glob('../pages/**/*.vue');
+const modulesJsx = import.meta.glob('../pages/**/*.jsx');
+const modules = Object.assign(modulesVue, modulesJsx);
+console.log('modules', modules);
 const Vue403 = '../pages/403.vue';
 const Vue404 = '../pages/404.vue';
-const HelloWorld = '../pages/HelloWorld.vue';
-const HelloWorld2 = '../pages/HelloWorld2.vue';
+const Order = '../pages/order/index.jsx';
+const User = '../pages/user/index.jsx';
+const Index = '../pages/index.jsx';
 import ChildrenLayout from '../layout/ChildrenLayout';
 export default [
     {
         path: '/',
-        component: modules[HelloWorld],
+        component: modules[Index],
 
         meta: { title: '首页', icon: 'el-icon-s-home', access: 'canCommon' }
     },
     {
-        path: '/hello',
-        meta: { title: 'hello', icon: 'el-icon-message', access: 'canAdmin' },
+        path: '/demo',
+        meta: { title: 'demo', icon: 'el-icon-message', access: 'canAdmin' },
         component: ChildrenLayout,
         children: [
             {
-                path: '/hello/view',
-                component: modules[HelloWorld],
-                meta: { title: 'view', access: 'canAdmin' }
+                path: '/demo/order',
+                component: modules[Order],
+                meta: { title: 'order', access: 'canAdmin' }
             },
             {
-                path: '/hello/view2',
-                component: modules[HelloWorld2],
-                meta: { title: 'view2' }
+                path: '/demo/user',
+                component: modules[User],
+                meta: { title: 'user' }
             }
         ]
     },
