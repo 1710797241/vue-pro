@@ -58,6 +58,7 @@ provide('updateLocation', updateLocation)
   <Button @click="handleRouter('/composition', { path: 'composition' })">router /composition</Button>
   <Button @click="handleRouter('/transition', { path: 'transition' })">router /transition</Button>
   <el-button type='primary'>click element</el-button>
+  <el-calendar></el-calendar>
   <router-view></router-view>
 </template>
 
