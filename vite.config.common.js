@@ -1,5 +1,5 @@
 import { defineConfig, splitVendorChunkPlugin } from 'vite';
-import { createVuePlugin } from 'vite-plugin-vue2';
+import vue from '@vitejs/plugin-vue2';
 import legacy from '@vitejs/plugin-legacy';
 import vueJsx from '@vitejs/plugin-vue2-jsx';
 import proxy from './config/proxy';
@@ -14,7 +14,7 @@ export default defineConfig({
         }
     },
     plugins: [
-        createVuePlugin(),
+        vue(),
         Inspector({
             vue: 2
         }),
