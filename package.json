@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "analyze": "vite --config vite.config.analyze.js build ",
     "preview": "vite preview"
   },
   "dependencies": {
