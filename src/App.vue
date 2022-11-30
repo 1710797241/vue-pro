@@ -1,5 +1,31 @@
+<template>
+  <h1>无命名空间</h1>
+  <input v-focus:title="20" />
+  <button @click="handleAdd(1)">{{ store.state.count }}</button>
+  <button @click="handleAdd(1)">getters:{{ store.getters.newCount }}</button>
+  <h1>有命名空间</h1>
+  <button @click="handleNameSpacedAdd(2)">{{ store.state.hello.count }}</button>
+  <button @click="handleNameSpacedAdd(2)">getters:{{ store.getters['hello/newCount'] }}</button>
+  <div>
+    <a href="https://vitejs.dev" target="_blank">
+      <img src="/vite.svg" class="logo" alt="Vite logo" />
+    </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <router-link to="/">hello</router-link><br />
+  <router-link to="composition">composition</router-link><br />
+  <router-link to="transition">transition</router-link>
+  <Button @click="handleRouter('/composition', { path: 'composition' })">router /composition</Button>
+  <Button @click="handleRouter('/transition', { path: 'transition' })">router /transition</Button>
+  <el-button type='primary'>click element</el-button>
+  <el-icon>
+    <i-ep-plus />
+  </el-icon>
+  <router-view></router-view>
+</template>
 <script setup>
-
 import { onMounted, provide, ref } from 'vue';
 import { useRoute, useRouter, } from 'vue-router';
 import { useStore } from 'vuex';
@@ -36,31 +62,7 @@ provide('updateLocation', updateLocation)
 
 </script>
 
-<template>
-  <h1>无命名空间</h1>
-  <input v-focus:title="20" />
-  <button @click="handleAdd(1)">{{ store.state.count }}</button>
-  <button @click="handleAdd(1)">getters:{{ store.getters.newCount }}</button>
-  <h1>有命名空间</h1>
-  <button @click="handleNameSpacedAdd(2)">{{ store.state.hello.count }}</button>
-  <button @click="handleNameSpacedAdd(2)">getters:{{ store.getters['hello/newCount'] }}</button>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <router-link to="/">hello</router-link><br />
-  <router-link to="composition">composition</router-link><br />
-  <router-link to="transition">transition</router-link>
-  <Button @click="handleRouter('/composition', { path: 'composition' })">router /composition</Button>
-  <Button @click="handleRouter('/transition', { path: 'transition' })">router /transition</Button>
-  <el-button type='primary'>click element</el-button>
-  <el-calendar></el-calendar>
-  <router-view></router-view>
-</template>
+
 
 <style scoped>
 .logo {
