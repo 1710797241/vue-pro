@@ -5,8 +5,8 @@ console.log('modules', modules);
 const Vue403 = '../pages/403.vue';
 const Vue404 = '../pages/404.vue';
 const Order = '../pages/order/index.jsx';
-const UserJsx = '../pages/user/index.jsx';
-const UserVue = '../pages/user/index.vue';
+// const UserJsx = '../pages/user/index.jsx';
+const User = '../pages/user/index.vue';
 
 const Index = '../pages/index.jsx';
 import ChildrenLayout from '../layout/ChildrenLayout';
@@ -29,7 +29,7 @@ export default [
             },
             {
                 path: '/demo/user',
-                component: modules[UserJsx],
+                component: modules[User],
                 meta: { title: 'user' }
             }
         ]
