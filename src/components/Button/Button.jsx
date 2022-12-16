@@ -14,7 +14,9 @@ const CAButton = {
             default: 1
         }
     },
-    beforeCreate() {},
+    beforeCreate() {
+        console.log('this.$bus', this.$bus);
+    },
     methods: {
         changIcon() {
             this.$emit('changIcon', 'el-icon-refresh-left');
