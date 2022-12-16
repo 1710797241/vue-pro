@@ -29,6 +29,16 @@
                 <el-button @click="handleSubmit">submit</el-button>
             </el-form>
         </el-dialog>
+        <c-a-button @changIcon="handeChangeIcon" :size="1">
+            <template slot="default" slot-scope="{ text }">
+                <i @click="handleClick(text)" :class="[{ red: isRed }]">
+                    {{ text }}
+                </i>
+            </template>
+            <template v-slot:icon="{ icon }">
+                <i :class="icon"></i>
+            </template>
+        </c-a-button>
     </div>
 </template>
 
@@ -36,6 +46,7 @@
 export default {
     data() {
         return {
+            isRed: true,
             tableData: [
                 {
                     date: '2016-05-02',
@@ -68,6 +79,12 @@ export default {
         this.currentRow = {};
     },
     methods: {
+        handeChangeIcon(val) {
+            this.$message(val);
+        },
+        handleClick(params) {
+            console.log('params', params);
+        },
         handleDelete(params) {
             const { $index } = params;
             this.tableData.splice($index, 1);
@@ -104,3 +121,6 @@ export default {
     }
 };
 </script>
+<style lang="less" scoped>
+@import url('./index.less');
+</style>

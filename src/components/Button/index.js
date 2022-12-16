@@ -1,5 +1,5 @@
-import AButton from './Button';
-AButton.install = function (Vue) {
-    Vue.component(AButton.name, AButton);
+import CAButton from './Button';
+CAButton.install = function (Vue) {
+    Vue.component(CAButton.name, CAButton);
 };
-export default AButton;
+export default CAButton;
