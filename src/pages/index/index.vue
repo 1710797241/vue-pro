@@ -6,5 +6,12 @@ export default defineComponent({
 });
 </script>
 <template>
-    <div>123456</div>
+    <div>
+        <el-button type="primary">
+            index
+            <el-icon class="is-loading">
+                <i-ep-promotion />
+            </el-icon>
+        </el-button>
+    </div>
 </template>
