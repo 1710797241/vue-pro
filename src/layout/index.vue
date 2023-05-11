@@ -124,8 +124,8 @@ const layoutHeader = defineComponent({
             : null,
           !pureSetting.hiddenSideBar && layout.value.includes("horizontal")
             ? h(Horizontal)
-            : null,
-          h(tag)
+            : null
+          // h(tag)
         ]
       }
     );

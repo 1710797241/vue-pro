@@ -5,5 +5,5 @@ defineOptions({
 </script>
 
 <template>
-  <h1>vue3-vite（国际化版本）</h1>
+  <h1>Welcome</h1>
 </template>

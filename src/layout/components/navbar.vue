@@ -47,11 +47,11 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <!-- 菜单搜索 -->
-      <Search />
+      <!-- <Search /> -->
       <!-- 通知 -->
-      <Notice id="header-notice" />
+      <!-- <Notice id="header-notice" /> -->
       <!-- 国际化 -->
-      <el-dropdown id="header-translation" trigger="click">
+      <!-- <el-dropdown id="header-translation" trigger="click">
         <globalization
           class="navbar-bg-hover w-[40px] h-[48px] p-[11px] cursor-pointer outline-none"
         />
@@ -81,7 +81,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
             </el-dropdown-item>
           </el-dropdown-menu>
         </template>
-      </el-dropdown>
+      </el-dropdown> -->
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
@@ -94,6 +94,10 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
         <template #dropdown>
           <el-dropdown-menu class="logout">
             <el-dropdown-item @click="logout">
+              <IconifyIconOffline :icon="Setting" style="margin: 5px" />
+              修改密码
+            </el-dropdown-item>
+            <el-dropdown-item @click="logout">
               <IconifyIconOffline
                 :icon="LogoutCircleRLine"
                 style="margin: 5px"
@@ -103,13 +107,13 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
           </el-dropdown-menu>
         </template>
       </el-dropdown>
-      <span
+      <!-- <span
         class="set-icon navbar-bg-hover"
         :title="t('buttons.hssystemSet')"
         @click="onPanel"
       >
         <IconifyIconOffline :icon="Setting" />
-      </span>
+      </span> -->
     </div>
   </div>
 </template>
@@ -179,12 +183,12 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
 }
 
 .logout {
-  max-width: 120px;
+  max-width: 180px;
 
   ::v-deep(.el-dropdown-menu__item) {
     min-width: 100%;
     display: inline-flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
   }
 }
 </style>
