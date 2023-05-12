@@ -1,9 +1,10 @@
 {
   "name": "vue3-vite",
-  "version": "3.9.7",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "NODE_OPTIONS=--max-old-space-size=2096 vite",
+    "start": "pnpm dev",
     "serve": "pnpm dev",
     "build": "rimraf dist && NODE_OPTIONS=--max-old-space-size=2096 vite build",
     "build:staging": "rimraf dist && vite build --mode staging",
@@ -89,7 +90,6 @@
     "rimraf": "3.0.2",
     "rollup-plugin-visualizer": "^5.9.0",
     "sass": "^1.57.1",
-    "sass-loader": "^13.2.0",
     "stylelint": "^14.3.0",
     "stylelint-config-html": "^1.0.0",
     "stylelint-config-prettier": "^9.0.3",
