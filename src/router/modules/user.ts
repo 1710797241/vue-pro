@@ -9,7 +9,8 @@ export default {
   meta: {
     icon: "UserFilled",
     title: "用户管理",
-    rank: 1
+    rank: 1,
+    roles: "admin"
   },
   children: [
     {
