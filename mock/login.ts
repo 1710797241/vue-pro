@@ -1,9 +1,10 @@
 // 根据角色动态生成路由
+import Apis from "@/api/Apis";
 import { MockMethod } from "vite-plugin-mock";
 
 export default [
   {
-    url: "/login",
+    url: Apis.Login,
     method: "post",
     response: ({ body }) => {
       if (body.username === "admin") {
