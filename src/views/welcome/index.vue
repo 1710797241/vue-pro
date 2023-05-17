@@ -26,6 +26,8 @@ const handleChangeFile = list => {
 </script>
 
 <template>
-  <h1>Welcome</h1>
-  <Upload v-model:list="list" @update:list="handleChangeFile" />
+  <div>
+    <h1>Welcome</h1>
+    <Upload v-model:list="list" @update:list="handleChangeFile" />
+  </div>
 </template>

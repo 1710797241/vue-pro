@@ -9,6 +9,7 @@ import {
   UploadRawFile,
   UploadUserFile
 } from "element-plus";
+
 export default defineComponent({
   name: "Upload",
   components: {
@@ -20,13 +21,11 @@ export default defineComponent({
   emits: ["update:list"],
   props: {
     list: {
-      type: [],
-      default: []
+      type: [Array],
+      default: () => []
     }
   },
-  setup: (props, { emit }) => {
-    console.log("upload props", props.list);
-
+  setup: (props: { list: any }, { emit }: any) => {
     const UploadUrl = Apis.Upload;
     const fileList = ref<UploadUserFile[]>(props.list || []);
     const dialogImageUrl = ref("");
@@ -103,49 +102,51 @@ export default defineComponent({
 </script>
 
 <template>
-  <el-upload
-    :file-list="fileList"
-    name="avatar"
-    :action="UploadUrl"
-    list-type="picture-card"
-    :auto-upload="true"
-    :on-success="handleSuccess"
-    :on-error="handleError"
-    :on-progress="handleProgress"
-    :before-upload="beforeUpload"
-  >
-    <el-icon><Plus /></el-icon>
+  <div>
+    <el-upload
+      :file-list="fileList"
+      name="avatar"
+      :action="UploadUrl"
+      list-type="picture-card"
+      :auto-upload="true"
+      :on-success="handleSuccess"
+      :on-error="handleError"
+      :on-progress="handleProgress"
+      :before-upload="beforeUpload"
+    >
+      <el-icon><Plus /></el-icon>
 
-    <template #file="{ file }">
-      <div>
-        <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
-        <span class="el-upload-list__item-actions">
-          <span
-            class="el-upload-list__item-preview"
-            @click="handlePictureCardPreview(file)"
-          >
-            <el-icon><zoom-in /></el-icon>
+      <template #file="{ file }">
+        <div>
+          <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+          <span class="el-upload-list__item-actions">
+            <span
+              class="el-upload-list__item-preview"
+              @click="handlePictureCardPreview(file)"
+            >
+              <el-icon><zoom-in /></el-icon>
+            </span>
+            <span
+              v-if="!disabled"
+              class="el-upload-list__item-delete"
+              @click="handleDownload(file)"
+            >
+              <el-icon><Download /></el-icon>
+            </span>
+            <span
+              v-if="!disabled"
+              class="el-upload-list__item-delete"
+              @click="handleRemove(file)"
+            >
+              <el-icon><Delete /></el-icon>
+            </span>
           </span>
-          <span
-            v-if="!disabled"
-            class="el-upload-list__item-delete"
-            @click="handleDownload(file)"
-          >
-            <el-icon><Download /></el-icon>
-          </span>
-          <span
-            v-if="!disabled"
-            class="el-upload-list__item-delete"
-            @click="handleRemove(file)"
-          >
-            <el-icon><Delete /></el-icon>
-          </span>
-        </span>
-      </div>
-    </template>
-  </el-upload>
+        </div>
+      </template>
+    </el-upload>
 
-  <el-dialog v-model="dialogVisible">
-    <img w-full :src="dialogImageUrl" alt="预览图片" />
-  </el-dialog>
+    <el-dialog v-model="dialogVisible">
+      <img w-full :src="dialogImageUrl" alt="预览图片" />
+    </el-dialog>
+  </div>
 </template>
