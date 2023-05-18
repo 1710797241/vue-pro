@@ -10,8 +10,6 @@ declare module '@vue/runtime-core' {
     ElButton: typeof import('element-plus/es')['ElButton']
     ElIcon: typeof import('element-plus/es')['ElIcon']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
-    IEpLoading: typeof import('~icons/ep/loading')['default']
-    IEpPlus: typeof import('~icons/ep/plus')['default']
     IEpPromotion: typeof import('~icons/ep/promotion')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
