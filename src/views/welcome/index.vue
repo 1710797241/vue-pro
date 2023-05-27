@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import Upload from "@/components/Upload/index.vue";
+import Modal from "@/components/Modal/index.vue";
 import type { UploadUserFile } from "element-plus";
 import { ref } from "vue";
 
@@ -23,11 +24,24 @@ const list = ref<UploadUserFile[]>([
 const handleChangeFile = list => {
   console.log("list", list.value);
 };
+const visible = ref(false);
+const handleModalStatus = () => {
+  visible.value = !visible.value;
+  console.log("visible", visible.value);
+};
 </script>
 
 <template>
   <div>
     <h1>Welcome</h1>
     <Upload v-model:list="list" @update:list="handleChangeFile" />
+    <el-button @click="handleModalStatus">modal</el-button>
+    <Modal
+      v-model="visible"
+      @ok="handleModalStatus()"
+      @cancel="handleModalStatus()"
+    >
+      默认插槽
+    </Modal>
   </div>
 </template>
